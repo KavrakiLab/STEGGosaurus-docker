@@ -1,0 +1,145 @@
+
+______________________________________________________________________________________________
+
+mybasename_intel/1f46A.log                    Thu Feb 28 16:56:31 2019
+______________________________________________________________________________________________
+
+Input file:                                                   1f46A.pdb
+
+
+SOLUTIONS/TRIALS IN GENERATION LOOP 
+___________________________________________________________________________________________________
+rmsd_avg_solutions	rmsd_avg_trials		solutions	 trials 	solutions/trials (%)
+       25.60691	            21.68670	            257	            978	            26.27812 
+___________________________________________________________________________________________________
+
+
+MON's TIMERS 
+___________________________________________________________________________________________________
+   total      sum loop[ms]   init  %  begin  % inside  %    inf  %    RCD  %
+  0.0000   0.0000   0.0000 0.0000 -nan 0.0000 -nan 0.0000 -nan 0.0000 -nan 0.0000 -nan
+___________________________________________________________________________________________________
+
+DATA PROTEIN LOOP
+PDB abbreviation protein:                                    1f46A
+Start residue loop itself                                       64
+End residue loop itself                                         75
+Begin anchor residue                                            63
+End anchor residue                                              76
+Chain ID                                                         A
+
+
+PARAMETER SETTINGS
+Number closures/pdb                                           1000
+Maximum iteration count/closure                              13000
+Maximum iteration count/perturbation cycle                     100
+Index for saving a trajectory path                             995
+
+
+SLOW TIMER
+Number samples                                                1000
+ 
+FAST TIMER STATISTICS         
+ 
+--------------------------------------------------------------------------------
+Parameter                       Exact (micros)       Rounded (micros)      
+--------------------------------------------------------------------------------
+ 
+Average                             438.398000                   438      
+Standard deviation                 2085.584577                  2086      
+Maximum                           29386.000000                 29386      
+Minimum                               0.000000                     0      
+Skewness                              7.563648                 7.564      
+Kurtosis                             75.563765                75.564      
+ 
+COUNTER STATISTICS            
+ 
+--------------------------------------------------------------------------------
+Parameter                                Exact               Rounded      
+--------------------------------------------------------------------------------
+ 
+Average                             168.801000                   169      
+Standard deviation                  843.204398                   844      
+Maximum                           12054.000000                 12054      
+Minimum                               0.000000                     0      
+Skewness                              7.930871                 7.931      
+Kurtosis                             81.696329                81.696      
+ 
+RMSD STATISTICS LOOP SOLUTIONS
+ 
+--------------------------------------------------------------------------------
+Parameter                      Exact (Angstrom)       Rounded (Angstrom)      
+--------------------------------------------------------------------------------
+ 
+Average                               3.334616                 3.335      
+Standard deviation                    1.335808                 1.336      
+Maximum                               8.399673                 8.400      
+Minimum                               1.153652                 1.154      
+Skewness                              0.842067                 0.842      
+Kurtosis                              4.209113                 4.209      
+ 
+BUMP (PD2) ENERGY STATISTICS LOOP SOLUTIONS
+ 
+--------------------------------------------------------------------------------
+Parameter                      Exact (Angstrom)       Rounded (Angstrom)      
+--------------------------------------------------------------------------------
+ 
+Average                               0.000000                 0.000      
+Standard deviation                    0.000000                 0.000      
+Maximum                               0.000000                 0.000      
+Minimum                               0.000000                 0.000      
+Skewness                                  -nan                  -nan      
+Kurtosis                                  -nan                  -nan      
+ 
+BUMP (PD2) EXTRA ENERGY STATISTICS LOOP SOLUTIONS
+ 
+--------------------------------------------------------------------------------
+Parameter                      Exact (Angstrom)       Rounded (Angstrom)      
+--------------------------------------------------------------------------------
+ 
+Average                               0.000000                 0.000      
+Standard deviation                    0.000000                 0.000      
+Maximum                               0.000000                 0.000      
+Minimum                               0.000000                 0.000      
+Skewness                                  -nan                  -nan      
+Kurtosis                                  -nan                  -nan      
+ 
+BUMP (PD2) INTRA ENERGY STATISTICS LOOP SOLUTIONS
+ 
+--------------------------------------------------------------------------------
+Parameter                      Exact (Angstrom)       Rounded (Angstrom)      
+--------------------------------------------------------------------------------
+ 
+Average                               0.000000                 0.000      
+Standard deviation                    0.000000                 0.000      
+Maximum                               0.000000                 0.000      
+Minimum                               0.000000                 0.000      
+Skewness                                  -nan                  -nan      
+Kurtosis                                  -nan                  -nan      
+ 
+Score statistics for LOOP SOLUTIONS
+ 
+--------------------------------------------------------------------------------
+Parameter                      Exact (Angstrom)       Rounded (Angstrom)      
+--------------------------------------------------------------------------------
+ 
+Average                            -225.876368              -225.876      
+Standard deviation                   21.060553                21.061      
+Maximum                            -199.983702              -199.984      
+Minimum                            -299.542709              -299.543      
+Skewness                             -1.164143                -1.164      
+Kurtosis                              3.881839                 3.882      
+
+Solutions/trials                                                87/257
+Convergence fraction                                         0.339
+ 
+
+COUNTER ANALYSIS
+Total iteration count                                      1278488
+Average count/LC                                              1278
+ 
+
+POST-FILTER CLASH ANALYSIS
+Loop closure solutions with clashes remaining                    0
+Fraction post-filter clashes                                 0.000
+ 

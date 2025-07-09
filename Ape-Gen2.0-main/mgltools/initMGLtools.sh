@@ -1,0 +1,5 @@
+alias pmv='/home/jared/Ape-Gen2.0-main/mgltools/bin/pmv'
+alias adt='/home/jared/Ape-Gen2.0-main/mgltools/bin/adt'
+alias vision='/home/jared/Ape-Gen2.0-main/mgltools/bin/vision'
+alias cadd='/home/jared/Ape-Gen2.0-main/mgltools/bin/cadd'
+alias pythonsh='/home/jared/Ape-Gen2.0-main/mgltools/bin/pythonsh'

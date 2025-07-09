@@ -1,0 +1,1 @@
+docker build -t kavrakilab/stegg:latest -f ./Docker_image/Dockerfile .
