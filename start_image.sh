@@ -1,1 +1,1 @@
-docker run d --name abenevolent_stegosaurus -it kavrakilab/stegg:latest
+docker run --name benevolent_stegosaurus -it kavrakilab/stegg:latest
