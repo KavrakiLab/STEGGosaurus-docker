@@ -31,6 +31,8 @@ if __name__ == "__main__":
     CDR3a = data["CDR3a"]
     CDR3b = data["CDR3b"]
 
+    TCR_pMHC_pair_id = input_json[:-5]
+
     print('Modeling pMHC ensemble')
     # --- Model pMHC with tfold + Ape-GEN 2.0 ---
     os.chdir('../Ape-Gen2.0-main')
@@ -96,12 +98,11 @@ if __name__ == "__main__":
     os.chdir('../STEGG_controler')
 
     # --- Post-processing of docked complexes ---
-    TCR_pMHC_pair_id = input_json[:-5]
     existing_hash = os.listdir('STEGG_complex_DB')
-    new_comp_hash = generate_unique_string(existing_hash)
-    unzip_gz_files('../haddock3_TCR/output/run/9_emref', 'STEGG_complex_DB/'+new_comp_hash,TCR_pMHC_pair_id)
+    new_comp_hash = generate_unique_string(existing_hash,'_'+TCR_pMHC_pair_id)
+    unzip_gz_files('../haddock3_TCR/output/run/9_emref', 'STEGG_complex_DB/'+new_comp_hash)
     for new_file in os.listdir('STEGG_complex_DB/'+new_comp_hash):
-        decouple_chains('STEGG_complex_DB/'+new_comp_hash+'/'+new_file,'STEGG_complex_DB/'+new_comp_hash,TCR_pMHC_pair_id+new_file[:-4])
+        decouple_chains('STEGG_complex_DB/'+new_comp_hash+'/'+new_file,'STEGG_complex_DB/'+new_comp_hash,new_file[:-4]+'_roi')
         os.remove('STEGG_complex_DB/'+new_comp_hash+'/'+new_file)
     for trash_file in os.listdir('STEGG_complex_DB'):
         if 'anarci' in trash_file:

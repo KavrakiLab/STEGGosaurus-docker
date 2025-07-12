@@ -10,7 +10,7 @@ d = {'CYS': 'C', 'ASP': 'D', 'SER': 'S', 'GLN': 'Q', 'LYS': 'K',
      'GLY': 'G', 'HIS': 'H', 'LEU': 'L', 'ARG': 'R', 'TRP': 'W',
      'ALA': 'A', 'VAL':'V', 'GLU': 'E', 'TYR': 'Y', 'MET': 'M'}
 
-def generate_unique_string(existing_strings, length=16):
+def generate_unique_string(existing_strings, postfix='', length=16):
     """
     Generates a unique random string of a specified length that is not present
     in a given list of existing strings.
@@ -28,8 +28,8 @@ def generate_unique_string(existing_strings, length=16):
         # Generate a random string
         new_string = ''.join(random.choices(charset, k=length))
         # Check if the generated string is unique
-        if new_string not in existing_strings:
-            return new_string
+        if new_string+postfix not in existing_strings:
+            return new_string+postfix
 
 def unzip_gz_files(source_directory, destination_directory, pair_identifier=''):
     """
