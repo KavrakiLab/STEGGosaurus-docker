@@ -56,7 +56,6 @@ RUN pip install DockQ
 
 COPY Ape-Gen2.0-main /home/Ape-Gen2.0-main
 COPY haddock3_TCR /home/haddock3_TCR
-COPY STEGG_benchmark_dataset /home/STEGG_benchmark_dataset
 COPY STEGG_controler /home/STEGG_controler
 COPY tfold /home/tfold
 COPY T-RECS /home/T-RECS

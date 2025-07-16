@@ -72,7 +72,7 @@ if __name__ == "__main__":
     # Move tfold output to T-RECS directory and run T-RECS for conformational sampling
     shutil.move('../tfold/output/TCR.pdb','../T-RECS/TCR.pdb')
     os.chdir('../T-RECS')
-    os.system('python3 T-RECS.py TCR.pdb 25') # TODO: 25 TCR conformations
+    os.system('python3 T-RECS.py TCR.pdb 25')# start with 40 TCR conformations if filtering
     os.chdir('../STEGG_controler')
 
     existing_hash = os.listdir('TCR_ensemble_DB')
@@ -80,7 +80,14 @@ if __name__ == "__main__":
     shutil.move('../T-RECS/output/TCR','TCR_ensemble_DB/'+new_TCR_hash)
     os.remove('../T-RECS/TCR.pdb')
 
-    # TODO: Implement clustering and filtering of TCR conformations, and re-modeling if needed.
+    # # clustering and filtering of TCR conformations,
+    # best_diverse_tcr = get_t_recs_diverse('TCR_ensemble_DB/'+new_TCR_hash,25)
+    #
+    # for file in os.listdir('TCR_ensemble_DB/'+new_TCR_hash):
+    #     if file not in list(best_diverse_tcr['tcr_pdb_name']):
+    #         os.remove('TCR_ensemble_DB/'+new_TCR_hash+'/'+file)
+
+    # TODO: re-modeling if needed.
 
     # Save metadata for the new TCR ensemble
     meta = {'hash':new_TCR_hash,'alpha':alpha,'beta':beta}
