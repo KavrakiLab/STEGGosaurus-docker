@@ -31,7 +31,7 @@ if __name__ == "__main__":
     CDR3a = data["CDR3a"]
     CDR3b = data["CDR3b"]
 
-    TCR_pMHC_pair_id = input_json[:-5]
+    TCR_pMHC_pair_id = data["jobID"]
 
     print('Modeling pMHC ensemble')
     # --- Model pMHC with tfold + Ape-GEN 2.0 ---
@@ -105,8 +105,9 @@ if __name__ == "__main__":
     os.chdir('../STEGG_controler')
 
     # --- Post-processing of docked complexes ---
-    existing_hash = os.listdir('STEGG_complex_DB')
-    new_comp_hash = generate_unique_string(existing_hash,'_'+TCR_pMHC_pair_id)
+    # existing_hash = os.listdir('STEGG_complex_DB')
+    # new_comp_hash = generate_unique_string(existing_hash,'_'+TCR_pMHC_pair_id)
+    new_comp_hash = TCR_pMHC_pair_id # use pair id as hash for now we assume that this is unique
     unzip_gz_files('../haddock3_TCR/output/run/9_emref', 'STEGG_complex_DB/'+new_comp_hash)
     for new_file in os.listdir('STEGG_complex_DB/'+new_comp_hash):
         decouple_chains('STEGG_complex_DB/'+new_comp_hash+'/'+new_file,'STEGG_complex_DB/'+new_comp_hash,new_file[:-4]+'_roi')

@@ -63,7 +63,7 @@ COPY T-RECS /home/T-RECS
 ENV LD_LIBRARY_PATH "$LD_LIBRARY_PATH:/mamba/envs/STEGG_all/lib/"
 
 # Change dir
-WORKDIR /home
+WORKDIR /home/STEGG_controler
 
 ENTRYPOINT ["bash"]
 

@@ -1,0 +1,65 @@
+Bootstrap: docker
+From: ubuntu:noble
+Stage: spython-base
+
+%files
+./Docker_image/environment.yml environment.yml
+Ape-Gen2.0-main /home/Ape-Gen2.0-main
+haddock3_TCR /home/haddock3_TCR
+STEGG_controler /home/STEGG_controler
+tfold /home/tfold
+T-RECS /home/T-RECS
+%post
+DEBIAN_FRONTEND=noninteractive
+
+apt-get update && \
+apt-get -y install \
+cmake \
+cython3 \
+doxygen \
+freeglut3-dev \
+gfortran \
+libeigen3-dev \
+libfftw3-dev \
+libfreetype6-dev \
+libglew-dev \
+libglm-dev \
+libpng-dev \
+libxml2-dev \
+python3-pip \
+swig \
+wget \
+vim
+
+wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
+chmod 0755 Miniforge3-Linux-x86_64.sh
+bash Miniforge3-Linux-x86_64.sh -b -p /mamba
+PATH="/mamba/bin:$PATH"
+
+mamba env create -f environment.yml
+echo "source activate STEGG_all" >> ~/.bashrc
+PATH="/mamba/envs/STEGG_all/bin:$PATH"
+
+mamba install -c bioconda smina
+mamba install -c bioconda autodock-vina
+
+pip install mpire
+pip install DockQ
+
+LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/mamba/envs/STEGG_all/lib/"
+
+# Change dir
+mkdir -p /home
+cd /home
+
+%environment
+export DEBIAN_FRONTEND=noninteractive
+export PATH="/mamba/bin:$PATH"
+export PATH="/mamba/envs/STEGG_all/bin:$PATH"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/mamba/envs/STEGG_all/lib/"
+%runscript
+cd /home
+exec bash "$@"
+%startscript
+cd /home
+exec bash "$@"

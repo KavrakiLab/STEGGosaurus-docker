@@ -164,7 +164,7 @@ def model_receptor(allele_sequence, peptide_sequence, allotype, filestore, cv):
 	starttime = time.time()
 
 	# model MHC with tfold
-	B2M = 'MIQRTPKIQVYSRHPAENGKSNFLNCYVSGFHPSDIEVDLLKNGERIEKVEHSDLSFSKDWSFYLLYYTEFTPTEKDEYACRVNHVTLSQPKIVKWDRDM'
+	B2M = 'MIQRTPKIQVYSRHPAENGKSNFLNCYVSGFHPSDIEVDLLKNGERIEKVEHSDLSFSKDWSFYLLYYTEFTPTEKDEYACRVNHVTLSQPKIVKWDRDM' # TODO: Fix this!!!
 	os.chdir('../../../tfold')
 	print('*'*100)
 	print(os.getcwd())
@@ -179,9 +179,11 @@ def model_receptor(allele_sequence, peptide_sequence, allotype, filestore, cv):
 	ppdb = PandasPdb().read_pdb('../tfold/output/MHC.pdb')
 	ppdb.df['ATOM']['chain_id'] = ppdb.df['ATOM']['chain_id'].replace('M', 'A')
 	ppdb.df['HETATM']['chain_id'] = ppdb.df['HETATM']['chain_id'].replace('P', 'C')
-	ppdb.to_pdb(path='/home/Ape-Gen2.0-main/intermediate_files/MODELLER_output/pMHC.pdb', records=['ATOM', 'HETATM'], gz=False)
+	ppdb.to_pdb(path='/scratch/js201/STEGGosaurus-docker/Ape-Gen2.0-main/intermediate_files/MODELLER_output/pMHC.pdb', records=['ATOM', 'HETATM'], gz=False)
 
-	os.chdir('/home/Ape-Gen2.0-main/intermediate_files/MODELLER_output')
+	ppdb.to_pdb(path='../Ape-Gen2.0-main/intermediate_files/MODELLER_output/pMHC.pdb', records=['ATOM', 'HETATM'], gz=False)
+
+	os.chdir('../Ape-Gen2.0-main/intermediate_files/MODELLER_output')
 	best_model = 'pMHC.pdb'
 	#
 	#
@@ -306,9 +308,9 @@ class Receptor(object):
 		return flexible_residues
 
 	def prepare_for_scoring(self, filestore, index=""):
-
-		prep_receptor_loc = "/home/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_receptor4.py"
-		pdbqt_to_pdb_loc = "/home/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/pdbqt_to_pdb.py"
+		print('Receptor class',os.getcwd())
+		prep_receptor_loc = "../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_receptor4.py"
+		pdbqt_to_pdb_loc = "../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/pdbqt_to_pdb.py"
 		self.pdbqt_filename = filestore + "/receptor_for_smina" + index + ".pdbqt"
 
 		clean = "lps"

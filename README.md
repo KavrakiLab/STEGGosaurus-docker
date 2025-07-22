@@ -56,11 +56,11 @@ Once dependencies are in place:
    And run
 
    ```bash
-   python3 model_complex.py input.json
+   python3 model_complex.py demo.json
    ```
 
 2. **Model Additional Complexes**
-   To model other TCR–pMHC complexes, create a new JSON input file following the same structure as `input.json`, and run:
+   To model other TCR–pMHC complexes, create a new JSON input file following the same structure as `demo.json`, and run:
 
    ```bash
    python3 model_complex.py your_input.json
