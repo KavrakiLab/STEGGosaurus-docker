@@ -25,7 +25,6 @@ if __name__ == "__main__":
     # Assign sequences to variables
     peptide = data["peptide"]
     MHC = data["MHC"]
-    B2M = data["B2M"]
     alpha = data["alpha"]
     beta = data["beta"]
     CDR3a = data["CDR3a"]
@@ -53,7 +52,7 @@ if __name__ == "__main__":
     # TODO: repeat modeling if too few conformations
 
     # Save metadata for the new pMHC ensemble
-    meta = {'hash':new_pMHC_hash,'peptide':peptide,'MHC':MHC,'B2M':B2M}
+    meta = {'hash':new_pMHC_hash,'peptide':peptide,'MHC':MHC}
     with open('pMHC_ensemble_DB/'+new_pMHC_hash+'/meta.json','w') as f:
         json.dump(meta, f)
     new_df = pd.DataFrame([meta])

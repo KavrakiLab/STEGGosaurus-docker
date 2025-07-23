@@ -10,7 +10,6 @@ def main():
     parser.add_argument('--TCRbeta', required=True, help="TCR beta chain sequence")
     parser.add_argument('--peptide', required=True, help="Peptide sequence")
     parser.add_argument('--MHC', required=True, help="MHC sequence")
-    parser.add_argument('--B2M', required=True, help="B2M sequence")
     
     args = parser.parse_args()
 
@@ -18,11 +17,10 @@ def main():
     CDR3b = get_CDR3_seq(args.TCRbeta)
 
     data = {
-        'TCRalpha': args.TCRalpha,
-        'TCRbeta': args.TCRbeta,
+        'alpha': args.TCRalpha,
+        'beta': args.TCRbeta,
         'peptide': args.peptide,
         'MHC': args.MHC,
-        'B2M': args.B2M,
         'CDR3a': CDR3a,
         'CDR3b': CDR3b,
         'jobID': args.jobID

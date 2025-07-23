@@ -164,7 +164,7 @@ def model_receptor(allele_sequence, peptide_sequence, allotype, filestore, cv):
 	starttime = time.time()
 
 	# model MHC with tfold
-	B2M = 'MIQRTPKIQVYSRHPAENGKSNFLNCYVSGFHPSDIEVDLLKNGERIEKVEHSDLSFSKDWSFYLLYYTEFTPTEKDEYACRVNHVTLSQPKIVKWDRDM' # TODO: Fix this!!!
+	B2M = '' # TODO: Fix this!!!
 	os.chdir('../../../tfold')
 	print('*'*100)
 	print(os.getcwd())
@@ -176,13 +176,17 @@ def model_receptor(allele_sequence, peptide_sequence, allotype, filestore, cv):
 	os.system('python3 projects/tfold_tcr/predict.py --fasta MHC.fasta --output output/MHC.pdb --model_version pMHC')
 	os.chdir('../STEGG_controler')
 
+	print('*'*100)
+	print(os.getcwd())
 	ppdb = PandasPdb().read_pdb('../tfold/output/MHC.pdb')
 	ppdb.df['ATOM']['chain_id'] = ppdb.df['ATOM']['chain_id'].replace('M', 'A')
 	ppdb.df['HETATM']['chain_id'] = ppdb.df['HETATM']['chain_id'].replace('P', 'C')
-	ppdb.to_pdb(path='/scratch/js201/STEGGosaurus-docker/Ape-Gen2.0-main/intermediate_files/MODELLER_output/pMHC.pdb', records=['ATOM', 'HETATM'], gz=False)
-
+	#ppdb.to_pdb(path='/scratch/js201/STEGGosaurus-docker/Ape-Gen2.0-main/intermediate_files/MODELLER_output/pMHC.pdb', records=['ATOM', 'HETATM'], gz=False)
+	print('*'*100)
+	print(os.getcwd())
 	ppdb.to_pdb(path='../Ape-Gen2.0-main/intermediate_files/MODELLER_output/pMHC.pdb', records=['ATOM', 'HETATM'], gz=False)
-
+	print('*'*100)
+	print(os.getcwd())
 	os.chdir('../Ape-Gen2.0-main/intermediate_files/MODELLER_output')
 	best_model = 'pMHC.pdb'
 	#
