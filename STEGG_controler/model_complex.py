@@ -35,12 +35,12 @@ if __name__ == "__main__":
     print('Modeling pMHC ensemble')
     # --- Model pMHC with tfold + Ape-GEN 2.0 ---
     os.chdir('../Ape-Gen2.0-main')
-    os.system('python3 New_APE-Gen.py '+peptide+' '+MHC+' --verbose > ape-gen_output.txt')
+    os.system('python3 New_APE-Gen.py '+peptide+' '+MHC+' --dir '+TCR_pMHC_pair_id+' --verbose > ape-gen_output.txt')
     os.chdir('../STEGG_controler')
 
     existing_hash = os.listdir('pMHC_ensemble_DB')
     new_pMHC_hash = generate_unique_string(existing_hash)
-    shutil.move('../Ape-Gen2.0-main/intermediate_files/results/5_final_conformations','pMHC_ensemble_DB/'+new_pMHC_hash)
+    shutil.move('../Ape-Gen2.0-main/'+TCR_pMHC_pair_id+'/results/5_final_conformations','pMHC_ensemble_DB/'+new_pMHC_hash)
 
     # Get the best diverse pMHC conformations based on Ape-GEN scores
     best_diverse_pmhc = get_ape_gen_diverse('pMHC_ensemble_DB/'+new_pMHC_hash,'../Ape-Gen2.0-main/ape-gen_output.txt',10)
@@ -59,25 +59,26 @@ if __name__ == "__main__":
     new_df.to_csv('pMHC_ensemble_DB/pMHC_ensemble_DB.csv', mode='a', header=False, index=False)
 
     print('modeling TCR ensemble')
+    os.mkdir('../T-RECS/output/'+TCR_pMHC_pair_id)
     # --- Model TCR ensemble with tfold + T-RECS ---
     os.chdir('../tfold')
     with open('TCR.fasta','w') as f:
         f.write('>A\n'+alpha+'\n')
         f.write('>B\n'+beta+'\n')
     # Run tfold to predict TCR structure
-    os.system('python3 projects/tfold_tcr/predict.py --fasta TCR.fasta --output output/TCR.pdb --model_version TCR')
+    os.system('python3 projects/tfold_tcr/predict.py --fasta TCR.fasta --output ../T-recs/output/'+TCR_pMHC_pair_id+'/'+TCR_pMHC_pair_id+'TCR.pdb --model_version TCR')
     os.chdir('../STEGG_controler')
 
-    # Move tfold output to T-RECS directory and run T-RECS for conformational sampling
-    shutil.move('../tfold/output/TCR.pdb','../T-RECS/TCR.pdb')
+    # # Move tfold output to T-RECS directory and run T-RECS for conformational sampling
+    # shutil.move('../tfold/output/TCR.pdb','../T-RECS/TCR.pdb')
     os.chdir('../T-RECS')
-    os.system('python3 T-RECS.py TCR.pdb 25')# start with 40 TCR conformations if filtering
+    os.system('python3 T-RECS.py output/'+TCR_pMHC_pair_id+'/'+TCR_pMHC_pair_id+'TCR.pdb 25')# start with 40 TCR conformations if filtering
     os.chdir('../STEGG_controler')
 
     existing_hash = os.listdir('TCR_ensemble_DB')
     new_TCR_hash = generate_unique_string(existing_hash)
-    shutil.move('../T-RECS/output/TCR','TCR_ensemble_DB/'+new_TCR_hash)
-    os.remove('../T-RECS/TCR.pdb')
+    shutil.move('../T-RECS/output/'+TCR_pMHC_pair_id+'/'+TCR_pMHC_pair_id+'TCR','TCR_ensemble_DB/'+new_TCR_hash)
+    # os.remove('../T-RECS/TCR.pdb')
 
     # # clustering and filtering of TCR conformations,
     # best_diverse_tcr = get_t_recs_diverse('TCR_ensemble_DB/'+new_TCR_hash,25)
@@ -107,7 +108,7 @@ if __name__ == "__main__":
     # existing_hash = os.listdir('STEGG_complex_DB')
     # new_comp_hash = generate_unique_string(existing_hash,'_'+TCR_pMHC_pair_id)
     new_comp_hash = TCR_pMHC_pair_id # use pair id as hash for now we assume that this is unique
-    unzip_gz_files('../haddock3_TCR/output/run/9_emref', 'STEGG_complex_DB/'+new_comp_hash)
+    unzip_gz_files('../haddock3_TCR/output/'+new_TCR_hash+new_pMHC_hash+'/run/9_emref', 'STEGG_complex_DB/'+new_comp_hash)
     for new_file in os.listdir('STEGG_complex_DB/'+new_comp_hash):
         decouple_chains('STEGG_complex_DB/'+new_comp_hash+'/'+new_file,'STEGG_complex_DB/'+new_comp_hash,new_file[:-4]+'_roi')
         os.remove('STEGG_complex_DB/'+new_comp_hash+'/'+new_file)

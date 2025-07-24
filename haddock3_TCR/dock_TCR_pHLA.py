@@ -173,7 +173,7 @@ if __name__ == "__main__":
 
     cleaned_tcr_paths = []
     cleaned_pmhc_paths = []
-    output_base_directory = 'output/' # Define base output directory
+    output_base_directory = 'output/'+tcr_pdb_directory.rsplit('/', 1)[-1]+pmhc_pdb_directory.rsplit('/', 1)[-1] # Define base output directory
 
     # delete base output directory and remake it
     shutil.rmtree(output_base_directory)
