@@ -4,7 +4,7 @@ import pandas as pd
 from cluster_structures import *
 from scoring_utils import *
 
-sys.path.insert(1,'/home/jared/stegg_github_dir/STEGGosaurus-docker/STEGG_controler/post_processing/')
+sys.path.insert(1,'/home/STEGG_controler/post_processing/')
 from energy_min import *
 
 def get_ape_gen_diverse(directory_path, log_filepath, num_top_conformations=3):

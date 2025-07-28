@@ -28,11 +28,10 @@ Ape-Gen2.0-main/helper_files/
 Download `korp6Dv1.bin` from this link:
 [Download KORP](https://chaconlab.org/modeling/korp/down-korp/item/korp-linux)
 
-Copy the binary file to **both** of the following directories:
+Copy the binary file to **both** of the following directory:
 
 ```
-Ape-Gen2.0-main/RCD_required_files/
-T-RECS/RCD_required_files/
+RCD_required_files/
 ```
 
 ---

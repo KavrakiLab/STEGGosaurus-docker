@@ -314,7 +314,7 @@ class Receptor(object):
 		self.pdbqt_filename = filestore + "/receptor_for_smina" + index + ".pdbqt"
 
 		clean = "lps"
-		call(["python " + prep_receptor_loc + " -r " + self.pdb_filename + " -o " + self.pdbqt_filename + " -A None -U" + clean + " > " + filestore + "/prepare_receptor4.log 2>&1"], shell=True)
+		call(["python2.5 " + prep_receptor_loc + " -r " + self.pdb_filename + " -o " + self.pdbqt_filename + " -A None -U" + clean + " > " + filestore + "/prepare_receptor4.log 2>&1"], shell=True)
 		# Control whether the file exists or not (maybe wrap up this into a function?)
 		try:
 			file = open(self.pdbqt_filename, 'r')
@@ -322,7 +322,7 @@ class Receptor(object):
 		except FileNotFoundError:
 			return True
 
-		call(["python " + pdbqt_to_pdb_loc + " -f " + self.pdbqt_filename + " -o " + filestore + "/receptor_for_smina_temp" + index + ".pdb > " + filestore + "/pdbqt_to_pdb.log 2>&1"], shell=True)
+		call(["python2.5 " + pdbqt_to_pdb_loc + " -f " + self.pdbqt_filename + " -o " + filestore + "/receptor_for_smina_temp" + index + ".pdb > " + filestore + "/pdbqt_to_pdb.log 2>&1"], shell=True)
 		# Control whether the file exists or not (maybe wrap up this into a function?)
 		try:
 			file = open(filestore + "/receptor_for_smina_temp" + index + ".pdb", 'r')

@@ -1,1 +1,0 @@
-docker build -t kavrakilab/apegen2.0:latest -f ./Docker_image/Dockerfile .

@@ -36,7 +36,7 @@ def make_RCD_target(pdb,chain_id,loop_start,loop_end,filename='rcd_targets.txt',
         out_file.write(os.path.basename(pdb)+' '+str(loop_start)+' '+str(loop_end)+' '+chain_id+' '+aa_seq+'\n')
     return out_dir+filename
     
-def run_RCD(n_samples=200,n_keep=1,dd=0.5,t=0.90,target_dir='output/',rcd_file_location='RCD_required_files',target_file_name='rcd_targets.txt'):
+def run_RCD(n_samples=200,n_keep=1,dd=0.5,t=0.90,target_dir='output/',rcd_file_location='../RCD_required_files',target_file_name='rcd_targets.txt'):
     """
     Executes the RCD (Randomized Coordinate Decent) program for loop modeling.
 
@@ -133,7 +133,7 @@ def pack_sidechains(pdb, chain_id, loop_start, loop_end, output_dir='output/'):
         out_file.write(aa_seq+'\n')
     print('seq_len:',len(aa_seq))
         
-    os.system('FASPR_required_files/FASPR -i '+pdb+' -o '+pdb[:-4]+'_packed.pdb -s '+output_dir+'faspr_seq.txt')
+    os.system('../FASPR_required_files/FASPR -i '+pdb+' -o '+pdb[:-4]+'_packed.pdb -s '+output_dir+'faspr_seq.txt')
     return pdb[:-4]+'_packed.pdb'
 
 def generate_loop_conf(working_pdb,fname,chain,output_dir,loop_start,loop_end,n_samples):
@@ -162,7 +162,7 @@ def generate_loop_conf(working_pdb,fname,chain,output_dir,loop_start,loop_end,n_
     pdb_a1 = output_dir+fname+'.pdb'
     shutil.copyfile(working_pdb,pdb_a1)
     rcd_target = make_RCD_target(pdb_a1,chain,loop_start,loop_end,filename='rcd_targets.txt',out_dir=output_dir)
-    run_RCD(n_samples=n_samples,n_keep=1,dd=0.5,t=0.90,target_dir=output_dir,rcd_file_location='RCD_required_files',target_file_name='rcd_targets.txt')
+    run_RCD(n_samples=n_samples,n_keep=1,dd=0.5,t=0.90,target_dir=output_dir,rcd_file_location='../RCD_required_files',target_file_name='rcd_targets.txt')
     rcd_loop = output_dir+'rcd_files/'+fname+'_closed.pdb'
     rcd_pdb = update_loop(rcd_loop,pdb_a1)
     packed_pdb = pack_sidechains(rcd_pdb,chain,loop_start,loop_end,output_dir)
