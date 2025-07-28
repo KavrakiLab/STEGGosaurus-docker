@@ -1,310 +1,269 @@
-[2025-06-17 12:30:01,409] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-07-28 12:31:00,132] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
 Loading ESM PPI 650m TCR model
 Loading tFold pMHC Trunk model
-[06/17 12:30:08 root]: restoring the pre-trained ppi model ...
-[06/17 12:30:09 root]: restoring the pre-trained tfold ab model ...
+[07/28 12:31:06 root]: restoring the pre-trained ppi model ...
+[07/28 12:31:07 root]: restoring the pre-trained tfold ab model ...
 #inference samples: 1
-[06/17 12:31:44 root]: PDB file generated: output/MHC.pdb
+[07/28 12:31:59 root]: PDB file generated: output/MHC.pdb
 Warning: use "from pymol import cmd" instead of "import cmd"
 Start of APE-Gen
+initilizing directory:  test
 Initializing receptor
 
-Processing Receptor Input: GSHSMRYFFTSVSRPGRGEPRFIAVGYVDDTQFVRFDSDAASQRMEPRAPWIEQEGPEYWDGETRKVKAHSQTHRVDLGTLRGYYNQSEAGSHTVQRMYGCDVGSDWRFLRGYHQYAYDGKDYIALKEDLRSWTAADMAAQTTKHKWEAAHVAEQLRAYLEGTCVEWLRRYLENGKETLQRTDAPKTHMTHHAVSDHEATLRCWALSFYPAEITLTWQRDGEDQTQDTELVETRPAGDGTFQKWAAVVVPSGQEQRYTCHVQHEGLPKPLTLRWEP
+Processing Receptor Input: MSSHSMRYFDTAVSRPGRGEPRFISVGYVDDTQFVRFDSDAASPRGEPRAPWVEQEGPEYWDRETQKYKRQAQADRVNLRKLRGYYNQSEDGSHTLQWMYGCDLGPDGRLLRGYDQSAYDGKDYIALNEDLRSWTAADTAAQITQRKWEAAREAEQWRAYLEGTCVEWLRRYLENGKETLQRAEHPKTHVTHHPVSDHEATLRCWALGFYPAEITLTWQRDGEDQTQDTELVETRPAGDGTFQKWAAVVVPSGEEQRYTCHVQHEGLPEPLTLRWEP
 Allotype not found in our structural DB. Let's see if it's in our sequence DB...
 allotype is a sequence!!!
 Searching for the closest match in terms of sequence:
-Closest match are the following alleles:  ['HLA-A*02:01', 'HLA-A*02:870', 'HLA-A*02:765']
+Closest match are the following alleles:  ['HLA-C*06:02']
 Fetching now the most appropriate template that will host the peptide in question:
 Will try to get the one that is closer to the peptide_input:
-Got 5C0D.pdb! This template has MHC HLA-A*02:01
+Got 5W67.pdb! This template has MHC HLA-C*06:02
 Preparing target sequence
 Creating model
 ****************************************************************************************************
-/home/jared/Ape-Gen2.0-main/intermediate_files/MODELLER_output
-****************************************************************************************************
-/home/jared/tfold
-Homology modelling took 106.13214540481567 seconds.
+/home/jared/stegg_github_dir/STEGGosaurus-docker/STEGG_controler
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+/home/jared/stegg_github_dir/STEGGosaurus-docker/STEGG_controler
+Homology modelling took 61.775349617004395 seconds.
 ^%^%^%^%^%^%^%^%^%^%
-intermediate_files/MODELLER_output/pMHC.pdb
+test/MODELLER_output/pMHC.pdb
 
-Processing Peptide Input: AQWGPDPAAA
+Processing Peptide Input: VRSRRALRL
 Determining anchors for given peptide sequence and allele allotypeFalse
 SMM matrices could NOT be used... Defaulting to peptide sequence alignment
 Searching for the closest match in terms of sequence:
-Closest match are the following alleles:  ['HLA-A*02:01', 'HLA-A*02:870', 'HLA-A*02:765']
-pretending that allele is  HLA-A*02:01
-     pdb_code     peptide  ... Peptide_similarity  Similarity_score
-411  5C0D.pdb  AQWGPDPAAA  ...                1.0               1.0
+Closest match are the following alleles:  ['HLA-C*06:02']
+pretending that allele is  HLA-C*06:02
+     pdb_code    peptide  ... Peptide_similarity  Similarity_score
+492  5W67.pdb  VRSRRALRL  ...                1.0               1.0
 
 [1 rows x 6 columns]
 
 Receptor Successfully Processed
-    Receptor Allotype: GSHSMRYFFTSVSRPGRGEPRFIAVGYVDDTQFVRFDSDAASQRMEPRAPWIEQEGPEYWDGETRKVKAHSQTHRVDLGTLRGYYNQSEAGSHTVQRMYGCDVGSDWRFLRGYHQYAYDGKDYIALKEDLRSWTAADMAAQTTKHKWEAAHVAEQLRAYLEGTCVEWLRRYLENGKETLQRTDAPKTHMTHHAVSDHEATLRCWALSFYPAEITLTWQRDGEDQTQDTELVETRPAGDGTFQKWAAVVVPSGQEQRYTCHVQHEGLPKPLTLRWEP
-    Receptor Template: intermediate_files/MODELLER_output/pMHC.pdb
+    Receptor Allotype: MSSHSMRYFDTAVSRPGRGEPRFISVGYVDDTQFVRFDSDAASPRGEPRAPWVEQEGPEYWDRETQKYKRQAQADRVNLRKLRGYYNQSEDGSHTLQWMYGCDLGPDGRLLRGYDQSAYDGKDYIALNEDLRSWTAADTAAQITQRKWEAAREAEQWRAYLEGTCVEWLRRYLENGKETLQRAEHPKTHVTHHPVSDHEATLRCWALGFYPAEITLTWQRDGEDQTQDTELVETRPAGDGTFQKWAAVVVPSGEEQRYTCHVQHEGLPEPLTLRWEP
+    Receptor Template: test/MODELLER_output/pMHC.pdb
 
 Peptide Successfully Processed
     Peptide Sequence:
-        AQWGPDPAAA
+        VRSRRALRL
     Peptide PTMs:
         []
 Scoring the sampled loops...
 Preparing receptor sans peptide for scoring (generate receptor.pdbqt)
+Receptor class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
 Performing peptide refinement and scoring. This may take a while...
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0020.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0020.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0028.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0028.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0040.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0040.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0047.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0047.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0056.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0056.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0065.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0065.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0071.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0071.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0077.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0077.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0085.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0085.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0095.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0095.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0003.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0003.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0008.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0008.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0016.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0016.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0021.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0021.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0029.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0029.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0036.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0036.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0045.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0045.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0053.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0053.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0059.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0059.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0067.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0067.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0080.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0080.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0091.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0091.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0000.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0000.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0007.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0007.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0015.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0015.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0027.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0027.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0035.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0035.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0039.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0039.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0049.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0049.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0058.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0058.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0068.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0068.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0078.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0078.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0087.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0087.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0097.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0097.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0005.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0005.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0013.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0013.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0024.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0024.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0032.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0032.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0037.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0037.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0046.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0046.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0055.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0055.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0063.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0063.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0069.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0069.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0076.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0076.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0084.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0084.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0092.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0092.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0099.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0099.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0010.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0010.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0018.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0018.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0023.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0023.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0031.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0031.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0041.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0041.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0050.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0050.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0057.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0057.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0064.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0064.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0072.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0072.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0082.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0082.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0090.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0090.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0098.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0098.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0006.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0006.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0014.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0014.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0022.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0022.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0030.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0030.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0043.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0043.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0051.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0051.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0061.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0061.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0066.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0066.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0074.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0074.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0083.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0083.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0089.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0089.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0093.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0093.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0002.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0002.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0011.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0011.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0019.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0019.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0026.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0026.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0034.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0034.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0038.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0038.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0044.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0044.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0052.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0052.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0060.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0060.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0070.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0070.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0075.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0075.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0081.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0081.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0088.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0088.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0096.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0096.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0004.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0004.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0012.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0012.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0025.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0025.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0033.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0033.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0042.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0042.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0048.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0048.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0054.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0054.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0062.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0062.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0073.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0073.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0079.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0079.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0086.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0086.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0094.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0094.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0001.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0001.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0009.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0009.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
-/home/jared/Ape-Gen2.0-main
-python /home/jared/Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l intermediate_files/results/4_SMINA_data/03_PTMed_peptides/PTMed_0017.pdb -o intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/peptide_0017.pdbqt -A None -Z -U lps -g -s > intermediate_files/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0025.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0025.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0033.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0033.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0043.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0043.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0050.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0050.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0054.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0054.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0061.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0061.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0073.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0073.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0082.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0082.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0087.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0087.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0094.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0094.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0002.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0002.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0010.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0010.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0018.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0018.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0022.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0022.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0030.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0030.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0036.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0036.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0045.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0045.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0053.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0053.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0065.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0065.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0074.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0074.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0080.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0080.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0089.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0089.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0096.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0096.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0005.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0005.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0013.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0013.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0027.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0027.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0035.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0035.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0040.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0040.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0051.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0051.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0059.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0059.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0064.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0064.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0069.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0069.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0078.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0078.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0088.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0088.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0098.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0098.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0003.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0003.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0011.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0011.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0019.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0019.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0026.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0026.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0034.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0034.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0039.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0039.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0048.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0048.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0058.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0058.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0067.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0067.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0075.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0075.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0083.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0083.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0092.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0092.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0001.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0001.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0009.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0009.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0017.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0017.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0021.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0021.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0029.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0029.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0038.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0038.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0044.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0044.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0052.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0052.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0060.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0060.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0068.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0068.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0079.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0079.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0086.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0086.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0095.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0095.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0004.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0004.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0015.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0015.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0024.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0024.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0032.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0032.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0041.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0041.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0049.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0049.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0056.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0056.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0062.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0062.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0071.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0071.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0081.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0081.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0090.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0090.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0097.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0097.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0006.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0006.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0014.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0014.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0023.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0023.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0031.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0031.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0037.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0037.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0046.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0046.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0055.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0055.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0063.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0063.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0072.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0072.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0077.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0077.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0084.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0084.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0091.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0091.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0099.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0099.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0008.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0008.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0016.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0016.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0020.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0020.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0028.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0028.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0042.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0042.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0047.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0047.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0057.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0057.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0066.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0066.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0070.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0070.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0076.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0076.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0085.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0085.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0093.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0093.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0000.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0000.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0007.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0007.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
+Peptide class /home/jared/stegg_github_dir/STEGGosaurus-docker/Ape-Gen2.0-main
+python ../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py -l test/results/4_SMINA_data/03_PTMed_peptides/PTMed_0012.pdb -o test/results/4_SMINA_data/04_pdbqt_peptides/peptide_0012.pdbqt -A None -Z -U lps -g -s > test/results/4_SMINA_data/04_pdbqt_peptides/prepare_ligand4.log 2>&1
 
 
 End of main workflow !!!
-Total number of overall conformations: 45
+Total number of overall conformations: 2
 
 Analytics:
 |   Peptide index | Debug                |   Affinity |
 |----------------:|:---------------------|-----------:|
-|            0000 | Successfully Modeled |   -65.771  |
-|            0001 | Successfully Modeled |   -65.7955 |
-|            0002 | Successfully Modeled |   -65.7836 |
-|            0003 | Successfully Modeled |   -65.7856 |
-|            0004 | Successfully Modeled |   -65.7554 |
-|            0005 | Successfully Modeled |   -65.8065 |
-|            0006 | Successfully Modeled |   -65.7899 |
-|            0007 | Successfully Modeled |   -65.8141 |
-|            0008 | Successfully Modeled |   -65.7731 |
-|            0009 | Successfully Modeled |   -65.7469 |
-|            0010 | Successfully Modeled |   -65.7312 |
-|            0011 | Successfully Modeled |   -65.7597 |
-|            0012 | Successfully Modeled |   -65.8294 |
-|            0013 | Successfully Modeled |   -65.729  |
-|            0014 | Successfully Modeled |   -65.8248 |
-|            0015 | Successfully Modeled |   -65.7823 |
-|            0016 | Successfully Modeled |   -65.8347 |
-|            0017 | Successfully Modeled |   -65.8169 |
-|            0018 | Successfully Modeled |   -65.8078 |
-|            0019 | Successfully Modeled |   -65.78   |
-|            0020 | Successfully Modeled |   -49.152  |
-|            0022 | Successfully Modeled |   -62.3469 |
-|            0023 | Successfully Modeled |   -61.6783 |
-|            0025 | Successfully Modeled |   -47.734  |
-|            0026 | Successfully Modeled |   -56.446  |
-|            0029 | Successfully Modeled |   -58.9144 |
-|            0030 | Successfully Modeled |   -58.4716 |
-|            0040 | Successfully Modeled |   -55.7873 |
-|            0043 | Successfully Modeled |   -61.3927 |
-|            0049 | Successfully Modeled |   -57.4261 |
-|            0052 | Successfully Modeled |   -57.3325 |
-|            0058 | Successfully Modeled |   -53.3022 |
-|            0059 | Successfully Modeled |   -57.5443 |
-|            0064 | Successfully Modeled |   -57.7465 |
-|            0066 | Successfully Modeled |   -55.4672 |
-|            0067 | Successfully Modeled |   -59.5598 |
-|            0073 | Successfully Modeled |   -55.1976 |
-|            0080 | Successfully Modeled |   -48.5912 |
-|            0082 | Successfully Modeled |   -57.0729 |
-|            0085 | Successfully Modeled |   -56.5742 |
-|            0087 | Successfully Modeled |   -60.6007 |
-|            0088 | Successfully Modeled |   -58.7441 |
-|            0089 | Successfully Modeled |   -60.2978 |
-|            0093 | Successfully Modeled |   -44.8281 |
-|            0099 | Successfully Modeled |   -55.9258 |
+|            0063 | Successfully Modeled |    56.7604 |
+|            0084 | Successfully Modeled |    50.9415 |
 
-Storing best conformation no. 0016 with Affinity = -65.834671
+Storing best conformation no. 0084 with Affinity = 50.9414711
 
 
 End of APE-Gen

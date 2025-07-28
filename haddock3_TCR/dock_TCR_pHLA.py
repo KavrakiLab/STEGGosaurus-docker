@@ -143,8 +143,17 @@ def generate_haddock_air_file(tcr_pdb_path, pmhc_pdb_path, sequence_dictionary, 
             with open(fname, 'r') as infile:
                 shutil.copyfileobj(infile, outfile) # Efficiently copy file content
 
-def dock():
-    os.system('haddock3 docking_tcr_pmhc.cfg')
+def generate_cfg(sample_id,template='template_config.txt'):
+
+    with open(template, 'r') as f:
+        config_template = f.read()
+
+    config_modified = config_template.replace('?', sample_id)
+
+    with open(sample_id+'.cfg', 'w') as f:
+        f.write(config_modified)
+
+    print(f"Config written to: "+sample_id+'.cfg')
 
 if __name__ == "__main__":
     # Command-line arguments:
@@ -173,10 +182,11 @@ if __name__ == "__main__":
 
     cleaned_tcr_paths = []
     cleaned_pmhc_paths = []
-    output_base_directory = 'output/'+tcr_pdb_directory.rsplit('/', 1)[-1]+pmhc_pdb_directory.rsplit('/', 1)[-1] # Define base output directory
+    output_base_directory = 'output/'+tcr_pdb_directory.rsplit('/', 1)[-1]+'_'+pmhc_pdb_directory.rsplit('/', 1)[-1] # Define base output directory
 
     # delete base output directory and remake it
-    shutil.rmtree(output_base_directory)
+    if os.path.exists(output_base_directory) and os.path.isdir(output_base_directory):
+        shutil.rmtree(output_base_directory)
     os.makedirs(output_base_directory, exist_ok=True)
 
     # Prepare TCR PDB files
@@ -217,4 +227,5 @@ if __name__ == "__main__":
         print("Error: No cleaned TCR or pMHC files available for restraint generation.")
         sys.exit(1)
 
-    dock()
+    generate_cfg(tcr_pdb_directory.rsplit('/', 1)[-1]+'_'+pmhc_pdb_directory.rsplit('/', 1)[-1])
+    os.system('haddock3 '+tcr_pdb_directory.rsplit('/', 1)[-1]+'_'+pmhc_pdb_directory.rsplit('/', 1)[-1]+'.cfg')

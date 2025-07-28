@@ -1,0 +1,63 @@
+# Directory in which the scoring will be done
+run_dir = "output/?/run"
+
+# Compute mode
+mode = "local"
+ncores = 50
+
+# Self contained rundir (to avoid problems with long filename paths)
+self_contained = true
+
+# Post-processing to generate statistics and plots
+postprocess = true
+clean = true
+
+molecules =  [
+    "output/?/TCR_ensemble.pdb",
+    "output/?/pMHC_ensemble.pdb"
+    ]
+
+[topoaa]
+
+[rigidbody]
+# CDR to epitope ambig restraints
+ambig_fname = "output/?/tcr_phla_restraints.tbl"
+# Restraints to keep the chains together
+unambig_fname = "output/?/chain_restraint.tbl"
+sampling = 2000
+
+[seletop]
+select = 1500
+
+[ilrmsdmatrix]
+
+[clustrmsd]
+criterion = 'maxclust'
+n_clusters = 300
+min_population = 2
+
+[seletopclusts]
+top_models = 5
+top_cluster = 200
+
+[seletop]
+select = 400
+
+[flexref]
+tolerance = 75
+# CDR to epitope ambig restraints
+ambig_fname = "output/?/tcr_phla_restraints.tbl"
+# Restraints to keep the chains together
+unambig_fname = "output/?/chain_restraint.tbl"
+
+[seletop]
+# Selection of the top 100-200 best scoring complexes to use later
+select = 200
+
+[emref]
+tolerance = 10
+# CDR to epitope ambig restraints
+ambig_fname = "output/?/tcr_phla_restraints.tbl"
+# Restraints to keep the chains together
+unambig_fname = "output/?/chain_restraint.tbl"
+

@@ -248,6 +248,7 @@ def apegen(args):
 
 	# Directory to store intermediate files
 	temp_files_storage = args.dir
+	print('initilizing directory: ',temp_files_storage)
 	initialize_dir(temp_files_storage)
 
 	# 1. INPUT PROCESSING

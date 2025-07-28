@@ -335,8 +335,8 @@ class Peptide(object):
 		prep_peptide_loc = "../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py"
 		self.pdbqt_filename = filestore + "/04_pdbqt_peptides/peptide_" + str(self.index) + ".pdbqt"
 		clean = "lps"
-		print("python2.5 " + prep_peptide_loc + " -l " + self.pdb_filename + " -o " + self.pdbqt_filename + " -A None -Z -U " + clean + " -g -s > " + filestore + "/04_pdbqt_peptides/prepare_ligand4.log 2>&1")
-		call(["python2.5 " + prep_peptide_loc + " -l " + self.pdb_filename + " -o " + self.pdbqt_filename + " -A None -Z -U " + clean + " -g -s > " + filestore + "/04_pdbqt_peptides/prepare_ligand4.log 2>&1"], shell=True)
+		print("python " + prep_peptide_loc + " -l " + self.pdb_filename + " -o " + self.pdbqt_filename + " -A None -Z -U " + clean + " -g -s > " + filestore + "/04_pdbqt_peptides/prepare_ligand4.log 2>&1")
+		call(["python " + prep_peptide_loc + " -l " + self.pdb_filename + " -o " + self.pdbqt_filename + " -A None -Z -U " + clean + " -g -s > " + filestore + "/04_pdbqt_peptides/prepare_ligand4.log 2>&1"], shell=True)
 
 		# If the resulting .pdbqt is faulty, delete it. If it does not exist, it is also faulty, so skip whatever else.
 		try:
