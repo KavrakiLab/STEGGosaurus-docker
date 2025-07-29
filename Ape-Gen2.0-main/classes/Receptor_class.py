@@ -309,8 +309,8 @@ class Receptor(object):
 
 	def prepare_for_scoring(self, filestore, index=""):
 		print('Receptor class',os.getcwd())
-		prep_receptor_loc = "../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_receptor4.py"
-		pdbqt_to_pdb_loc = "../Ape-Gen2.0-main/mgltools/MGLToolsPckgs/AutoDockTools/Utilities24/pdbqt_to_pdb.py"
+		prep_receptor_loc = "../Ape-Gen2.0-main/ngl_min/prepare_receptor4.py"
+		pdbqt_to_pdb_loc = "../Ape-Gen2.0-main/ngl_min/pdbqt_to_pdb.py"
 		self.pdbqt_filename = filestore + "/receptor_for_smina" + index + ".pdbqt"
 
 		clean = "lps"

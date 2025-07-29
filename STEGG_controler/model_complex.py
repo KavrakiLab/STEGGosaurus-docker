@@ -122,4 +122,7 @@ if __name__ == "__main__":
     new_df = pd.DataFrame([meta])
     new_df.to_csv('STEGG_complex_DB/STEGG_complex_DB.csv', mode='a', header=False, index=False)
 
+    # print("cleaning files")
+    # #TODO: clean excess files
+
     print("\nComplex modeling and docking complete!")
