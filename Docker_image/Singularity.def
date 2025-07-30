@@ -9,6 +9,8 @@ haddock3_TCR /home/haddock3_TCR
 STEGG_controler /home/STEGG_controler
 tfold /home/tfold
 T-RECS /home/T-RECS
+RCD_required_files /home/RCD_required_files
+FASPR_required_files /home/FASPR_required_files
 %post
 DEBIAN_FRONTEND=noninteractive
 

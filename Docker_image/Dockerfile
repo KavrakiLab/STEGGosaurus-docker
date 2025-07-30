@@ -59,6 +59,8 @@ COPY haddock3_TCR /home/haddock3_TCR
 COPY STEGG_controler /home/STEGG_controler
 COPY tfold /home/tfold
 COPY T-RECS /home/T-RECS
+COPY RCD_required_files /home/RCD_required_files
+COPY FASPR_required_files /home/FASPR_required_files
 
 ENV LD_LIBRARY_PATH "$LD_LIBRARY_PATH:/mamba/envs/STEGG_all/lib/"
 

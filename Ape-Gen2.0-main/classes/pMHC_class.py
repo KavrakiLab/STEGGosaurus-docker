@@ -221,7 +221,7 @@ class pMHC(object):
 		loops.close()
 
 		# Call RCD
-		call(["../../../../../RCD_required_files/bin/rcd -e 1 -x " + pwd + "/RCD_required_files/dunbrack.bin --energy_file " + pwd + "/helper_files/loco.score -o . -d " + str(RCD_dist_tol) + " -n " + str(rcd_num_loops) + " --bench loops.txt >> ../../3_RCD_data/" + str(template_index) + "/rcd.log 2>&1 && awk '{$1=$1};1' anchored_pMHC_proper_rmsd.txt > korp_tmp.txt && mv korp_tmp.txt anchored_pMHC_proper_rmsd.txt"], shell=True)
+		call(["../../../../../RCD_required_files/bin/rcd -e 1 -x " + pwd + "/../RCD_required_files/dunbrack.bin --energy_file " + pwd + "/helper_files/loco.score -o . -d " + str(RCD_dist_tol) + " -n " + str(rcd_num_loops) + " --bench loops.txt >> ../../3_RCD_data/" + str(template_index) + "/rcd.log 2>&1 && awk '{$1=$1};1' anchored_pMHC_proper_rmsd.txt > korp_tmp.txt && mv korp_tmp.txt anchored_pMHC_proper_rmsd.txt"], shell=True)
 
 		# Move files to back to destination folder
 		move_batch_of_files('./', '../../3_RCD_data/' + str(template_index) + '/', query="anchored_pMHC_proper_")
