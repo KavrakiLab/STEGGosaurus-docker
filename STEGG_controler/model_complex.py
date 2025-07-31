@@ -35,7 +35,7 @@ if __name__ == "__main__":
     print('Modeling pMHC ensemble')
     # --- Model pMHC with tfold + Ape-GEN 2.0 ---
     os.chdir('../Ape-Gen2.0-main')
-    os.system('python3 New_APE-Gen.py '+peptide+' '+MHC+' --dir '+TCR_pMHC_pair_id+' --num_coers 50 --num_loops_for_optimization 200 --verbose > ape-gen_output.txt')
+    os.system('python3 New_APE-Gen.py '+peptide+' '+MHC+' --dir '+TCR_pMHC_pair_id+' --num_cores 50 --num_loops_for_optimization 200 --verbose > ape-gen_output.txt')
     os.chdir('../STEGG_controler')
 
     shutil.move('../Ape-Gen2.0-main/'+TCR_pMHC_pair_id+'/results/5_final_conformations','pMHC_ensemble_DB/'+TCR_pMHC_pair_id)
