@@ -171,10 +171,10 @@ def model_receptor(allele_sequence, peptide_sequence, allotype, filestore, cv):
 		f.write('>N\n'+B2M+'\n')
 		f.write('>P\n'+peptide_sequence+'\n')
 		# python projects/tfold_tcr/predict.py --json examples/pmhc_example.json --output examples/predictions/ --model_version pMHC
-	os.system('python3 projects/tfold_tcr/predict.py --fasta MHC.fasta --output output/MHC.pdb --model_version pMHC')
+	os.system('python3 projects/tfold_tcr/predict.py --fasta MHC.fasta --output output/'+filestore+'MHC.pdb --model_version pMHC')
 	os.chdir('../STEGG_controler')
 
-	ppdb = PandasPdb().read_pdb('../tfold/output/MHC.pdb')
+	ppdb = PandasPdb().read_pdb('../tfold/output/'+filestore+'MHC.pdb')
 	ppdb.df['ATOM']['chain_id'] = ppdb.df['ATOM']['chain_id'].replace('M', 'A')
 	ppdb.df['HETATM']['chain_id'] = ppdb.df['HETATM']['chain_id'].replace('P', 'C')
 	#ppdb.to_pdb(path='/scratch/js201/STEGGosaurus-docker/Ape-Gen2.0-main/'+filestore+'/MODELLER_output/pMHC.pdb', records=['ATOM', 'HETATM'], gz=False)

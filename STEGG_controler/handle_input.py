@@ -37,11 +37,17 @@ def get_CDR3_seq(TCR_chain_seq):
     TCR_seq = [("input_seq",TCR_chain_seq)]
     anarci_out = anarci(TCR_seq,scheme='imgt',output=False)
     # Extract the list of tuples
-    sequence_data = anarci_out[0][0][0][0]
-
+    try:
+        sequence_data = anarci_out[0][0][0][0]
+    except:
+        print("Not a valid TCR sequence!")
+        raise
+    
     result = ''.join(char for ((index, _), char) in sequence_data if 105 <= index <= 117)
 
     return result.replace('-','')
+
+# TODO: verify peptide input using MHCflurry (already verified compatabililty with docker setup)
 
 if __name__ == "__main__":
     main()

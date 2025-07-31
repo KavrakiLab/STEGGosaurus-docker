@@ -35,7 +35,7 @@ if __name__ == "__main__":
     print('Modeling pMHC ensemble')
     # --- Model pMHC with tfold + Ape-GEN 2.0 ---
     os.chdir('../Ape-Gen2.0-main')
-    os.system('python3 New_APE-Gen.py '+peptide+' '+MHC+' --dir '+TCR_pMHC_pair_id+' --verbose > ape-gen_output.txt')
+    os.system('python3 New_APE-Gen.py '+peptide+' '+MHC+' --dir '+TCR_pMHC_pair_id+' --num_coers 50 --num_loops_for_optimization 200 --verbose > ape-gen_output.txt')
     os.chdir('../STEGG_controler')
 
     shutil.move('../Ape-Gen2.0-main/'+TCR_pMHC_pair_id+'/results/5_final_conformations','pMHC_ensemble_DB/'+TCR_pMHC_pair_id)
@@ -71,7 +71,7 @@ if __name__ == "__main__":
     # # Move tfold output to T-RECS directory and run T-RECS for conformational sampling
     # shutil.move('../tfold/output/TCR.pdb','../T-RECS/TCR.pdb')
     os.chdir('../T-RECS')
-    os.system('python3 T-RECS.py output/'+TCR_pMHC_pair_id+'/'+TCR_pMHC_pair_id+'TCR.pdb 2')# start with 40 TCR conformations if filtering
+    os.system('python3 T-RECS.py output/'+TCR_pMHC_pair_id+'/'+TCR_pMHC_pair_id+'TCR.pdb 25')# start with 40 TCR conformations if filtering
     os.chdir('../STEGG_controler')
 
     shutil.move('../T-RECS/output/output/'+TCR_pMHC_pair_id+'/'+TCR_pMHC_pair_id+'TCR','TCR_ensemble_DB/'+TCR_pMHC_pair_id)
@@ -126,3 +126,21 @@ if __name__ == "__main__":
     # #TODO: clean excess files
 
     print("\nComplex modeling and docking complete!")
+
+    print('cleaning files')
+    files_to_clean = [
+        '../haddock3_TCR/'+TCR_pMHC_pair_id+'_'+TCR_pMHC_pair_id+'.cfg',
+    ]
+    directories_to_clean = [
+        '../Ape-Gen2.0-main/'+TCR_pMHC_pair_id,
+        '../T-RECS/output/'+TCR_pMHC_pair_id,
+        '../T-RECS/output/output/'+TCR_pMHC_pair_id,
+        '../haddock3_TCR/output/'+TCR_pMHC_pair_id+'_'+TCR_pMHC_pair_id,
+        '../tfold/output/'+TCR_pMHC_pair_id+'/MODELLER_outputMHC.pdb',
+    ]
+
+    for file in files_to_clean:
+        os.remove(file)
+    
+    for directory in directories_to_clean:
+        shutil.rmtree(directory)
