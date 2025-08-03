@@ -13,12 +13,12 @@ def main():
     
     args = parser.parse_args()
 
-    CDR3a = get_CDR3_seq(args.TCRalpha)
-    CDR3b = get_CDR3_seq(args.TCRbeta)
+    CDR3a, alpha_seq = get_CDR3_seq(args.TCRalpha)
+    CDR3b, beta_seq = get_CDR3_seq(args.TCRbeta)
 
     data = {
-        'alpha': args.TCRalpha,
-        'beta': args.TCRbeta,
+        'alpha': alpha_seq,
+        'beta': beta_seq,
         'peptide': args.peptide,
         'MHC': args.MHC,
         'CDR3a': CDR3a,
@@ -45,7 +45,9 @@ def get_CDR3_seq(TCR_chain_seq):
     
     result = ''.join(char for ((index, _), char) in sequence_data if 105 <= index <= 117)
 
-    return result.replace('-','')
+    full_seq = ''.join(char for ((index, _), char) in sequence_data)
+
+    return result.replace('-',''), full_seq.replace('-','')
 
 # TODO: verify peptide input using MHCflurry (already verified compatabililty with docker setup)
 
