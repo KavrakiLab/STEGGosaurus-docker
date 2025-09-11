@@ -45,8 +45,9 @@ if __name__ == "__main__":
 
     if best_diverse_pmhc is not None:
         for file in os.listdir('pMHC_ensemble_DB/'+TCR_pMHC_pair_id):
-            if file not in list(best_diverse_pmhc['Peptide_Index']):
-                os.remove('pMHC_ensemble_DB/'+TCR_pMHC_pair_id+'/'+file)
+            if file[-4:] == '.pdb'
+                if file not in list(best_diverse_pmhc['Peptide_Index']):
+                    os.remove('pMHC_ensemble_DB/'+TCR_pMHC_pair_id+'/'+file)
 
     # TODO: repeat modeling if too few conformations
 
@@ -141,6 +142,6 @@ if __name__ == "__main__":
 
     for file in files_to_clean:
         os.remove(file)
-    
+
     for directory in directories_to_clean:
         shutil.rmtree(directory)
