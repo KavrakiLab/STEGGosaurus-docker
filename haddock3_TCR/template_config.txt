@@ -38,7 +38,7 @@ min_population = 2
 
 [seletopclusts]
 top_models = 5
-top_cluster = 200
+top_clusters = 200
 
 [seletop]
 select = 400
