@@ -45,7 +45,7 @@ if __name__ == "__main__":
 
     if best_diverse_pmhc is not None:
         for file in os.listdir('pMHC_ensemble_DB/'+TCR_pMHC_pair_id):
-            if file[-4:] == '.pdb'
+            if file[-4:] == '.pdb':
                 if file not in list(best_diverse_pmhc['Peptide_Index']):
                     os.remove('pMHC_ensemble_DB/'+TCR_pMHC_pair_id+'/'+file)
 
