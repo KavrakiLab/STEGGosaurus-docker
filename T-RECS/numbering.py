@@ -76,9 +76,14 @@ def find_loops(pdb,chain_letters,out_dir='output/'):
     anarci(TCR_seq,scheme='imgt',output=True,outfile=out_dir+'TCR_anarci.txt')
     os.system("tr -s '[:blank:]' ',' < "+out_dir+"TCR_anarci.txt > "+out_dir+"TCR_anarci_stripped.txt")
 
-    #remove cases with additional letters on rows...
+    #remove cases with additional letters on rows and ensure proper chain numbering.
+    current_chain = 'A'
     with open(out_dir+"TCR_anarci_stripped.txt", 'r') as infile, open(out_dir+"TCR_anarci_stripped_clean.txt", 'w') as outfile:
         for line in infile:
+            if '//' in line:
+                current_chain = 'B'
+            if line[0] not in ['#','/',' ']:
+                line = current_chain+line[1:]
             if line.count(',') > 2:
                 line = line[:-4]+line[-2:]
             outfile.write(line)
