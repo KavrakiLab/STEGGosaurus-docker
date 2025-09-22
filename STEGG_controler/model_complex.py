@@ -97,7 +97,7 @@ if __name__ == "__main__":
     print('running ensemble docking')
     # --- Dock TCRs and pHLAs using HADDOCK3 ---
     os.chdir('../haddock3_TCR')
-    cmd = 'python3 dock_TCR_pHLA.py ../STEGG_controler/TCR_ensemble_DB/'+TCR_pMHC_pair_id+' ../STEGG_controler/pMHC_ensemble_DB/'+TCR_pMHC_pair_id+' '+CDR3a+' '+CDR3b+' '+peptide
+    cmd = 'python3 dock_TCR_pHLA.py ../STEGG_controler/TCR_ensemble_DB/'+TCR_pMHC_pair_id+'/'+TCR_pMHC_pair_id+'TCR ../STEGG_controler/pMHC_ensemble_DB/'+TCR_pMHC_pair_id+' '+CDR3a+' '+CDR3b+' '+peptide
     print(cmd)
     os.system(cmd)
     os.chdir('../STEGG_controler')
