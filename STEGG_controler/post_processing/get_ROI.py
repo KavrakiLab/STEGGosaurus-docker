@@ -73,7 +73,12 @@ def decouple_chains(ref_merged,out_dir,output_filename_prefix):
 
     # Clean up ANARCI output: remove lines with too many commas (extra letters)
     with open(anarci_stripped_filepath, 'r') as infile, open(anarci_clean_filepath, 'w') as outfile:
+        current_chain = 'D'
         for line in infile:
+            if '//' in line:
+                current_chain = 'E'
+            if line[0] not in ['#','/',' ']:
+                line = current_chain+line[1:]
             if line.count(',') > 2:
                 line = line[:-4]+line[-2:]
             outfile.write(line)
