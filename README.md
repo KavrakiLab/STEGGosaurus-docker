@@ -36,6 +36,15 @@ RCD_required_files/
 
 ---
 
+#### Pytorch models
+If you want to pack the models into the docker image, download them and place them in the `models/` directory.
+
+```bash
+wget -O models/esm_ppi_650m_tcr.pth https://zenodo.org/record/12602915/files/esm_ppi_650m_tcr.pth && \
+wget -O models/tfold_pmhc_trunk.pth https://zenodo.org/record/12602915/files/tfold_pmhc_trunk.pth && \
+wget -O models/tfold_tcr_trunk.pth https://zenodo.org/record/12602915/files/tfold_tcr_trunk.pth
+```
+
 ## 🐳 Building & Running the Docker Container
 
 Once dependencies are in place:

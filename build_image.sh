@@ -1,1 +1,1 @@
-docker build -t kavrakilab/stegg:latest -f ./Docker_image/Dockerfile .
+docker build -t kavrakilab/stegg:3.0 -f ./Docker_image/Dockerfile .
