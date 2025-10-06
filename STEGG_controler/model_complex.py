@@ -110,6 +110,9 @@ if __name__ == "__main__":
     for trash_file in os.listdir('STEGG_complex_DB'):
         if 'anarci' in trash_file:
             os.remove('STEGG_complex_DB/'+trash_file)
+    for trash_file in os.listdir('STEGG_complex_DB/'+TCR_pMHC_pair_id):
+        if 'anarci' in trash_file:
+            os.remove('STEGG_complex_DB/'+TCR_pMHC_pair_id+'/'+trash_file)
 
     #TODO energy min... ?
 
@@ -137,7 +140,7 @@ if __name__ == "__main__":
         '../T-RECS/output/'+TCR_pMHC_pair_id,
         '../T-RECS/output/output/'+TCR_pMHC_pair_id,
         '../haddock3_TCR/output/'+TCR_pMHC_pair_id+'_'+TCR_pMHC_pair_id,
-        '../tfold/output/'+TCR_pMHC_pair_id+'/MODELLER_outputMHC.pdb',
+        '../tfold/output/'+TCR_pMHC_pair_id,
     ]
 
     for file in files_to_clean:

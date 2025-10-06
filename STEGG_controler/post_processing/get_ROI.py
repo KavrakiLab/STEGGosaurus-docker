@@ -89,8 +89,8 @@ def decouple_chains(ref_merged,out_dir,output_filename_prefix):
     renumbered_tcr_df = renumbered_tcr_df[renumbered_tcr_df['acid'] != '-'].dropna()
 
     # Extract renumbered sequences from ANARCI output for each chain
-    anarci_tcr1_sequence = ''.join(renumbered_tcr_df[renumbered_tcr_df['chain']=='A']['acid'].tolist())
-    anarci_tcr2_sequence = ''.join(renumbered_tcr_df[renumbered_tcr_df['chain']=='B']['acid'].tolist())
+    anarci_tcr1_sequence = ''.join(renumbered_tcr_df[renumbered_tcr_df['chain']=='D']['acid'].tolist())
+    anarci_tcr2_sequence = ''.join(renumbered_tcr_df[renumbered_tcr_df['chain']=='E']['acid'].tolist())
 
     # --- Filtering and renumbering atom DataFrame based on ANARCI results ---
     # Process TCR alpha chain ('D')
