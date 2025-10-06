@@ -34,9 +34,11 @@ COPY ./Docker_image/environment.yml /tmp/environment.yml
 RUN mamba env create -f /tmp/environment.yml && mamba clean -afy
 # RUN echo "source activate STEGG_all" >> ~/.bashrc
 SHELL ["/bin/bash", "-lc"]
-RUN mamba shell init --shell bash --root-prefix=/mamba
-RUN echo 'if [ -n "$PS1" ]; then eval "$(mamba shell hook --shell bash)"; mamba activate STEGG_all; fi' \
-    >> /etc/bash.bashrc
+RUN mamba shell init --shell bash
+RUN printf '%s\n' \
+  'eval "$(mamba shell hook --shell bash)"' \
+  'mamba activate STEGG_all' \
+  > /etc/profile.d/activate_stegg.sh
 RUN eval "$(mamba shell hook --shell bash)" \
  && mamba activate STEGG_all \
  && python -c "import sys; print(sys.executable)"
