@@ -110,6 +110,9 @@ if __name__ == "__main__":
     for trash_file in os.listdir('STEGG_complex_DB'):
         if 'anarci' in trash_file:
             os.remove('STEGG_complex_DB/'+trash_file)
+    for trash_file in os.listdir('STEGG_complex_DB/'+TCR_pMHC_pair_id):
+        if 'anarci' in trash_file:
+            os.remove('STEGG_complex_DB/'+TCR_pMHC_pair_id+'/'+trash_file)
 
     #TODO energy min... ?
 
