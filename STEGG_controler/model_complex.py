@@ -137,7 +137,7 @@ if __name__ == "__main__":
         '../T-RECS/output/'+TCR_pMHC_pair_id,
         '../T-RECS/output/output/'+TCR_pMHC_pair_id,
         '../haddock3_TCR/output/'+TCR_pMHC_pair_id+'_'+TCR_pMHC_pair_id,
-        '../tfold/output/'+TCR_pMHC_pair_id+'/MODELLER_outputMHC.pdb',
+        '../tfold/output/'+TCR_pMHC_pair_i,
     ]
 
     for file in files_to_clean:
