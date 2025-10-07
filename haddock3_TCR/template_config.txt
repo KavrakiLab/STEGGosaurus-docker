@@ -52,7 +52,7 @@ unambig_fname = "output/?/chain_restraint.tbl"
 
 [seletop]
 # Selection of the top 100-200 best scoring complexes to use later
-select = 200
+select = 300
 
 [emref]
 tolerance = 10
