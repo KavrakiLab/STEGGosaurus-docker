@@ -11,6 +11,7 @@ from get_best_diverse import *
 sys.path.insert(1,'/home/STEGG_controler/post_processing/')
 from get_ROI import *
 from align_pdbs import *
+from filtering.geometry import calc_geometric_features, filter_pdbs
 
 if __name__ == "__main__":
     # Command-line arguments:
@@ -118,6 +119,10 @@ if __name__ == "__main__":
 
     # Align all structures based on a reference chain (MHC chain)
     align_all_pdbs('STEGG_complex_DB/'+TCR_pMHC_pair_id)
+
+    # Filter results based on geometric criteria (TODO: make optional / expose criteria as parameters?)
+    calc_geometric_features(os.path.join("STEGG_complex_DB/", TCR_pMHC_pair_id))
+    filter_pdbs(os.path.join("STEGG_complex_DB/", TCR_pMHC_pair_id), os.path.join("STEGG_complex_DB/", TCR_pMHC_pair_id, "filtered/"))
 
     # Save metadata for the new STEGG complex ensemble
     meta = {'hash':TCR_pMHC_pair_id,'alpha':alpha,'beta':beta,'peptide':peptide,'MHC':MHC}
