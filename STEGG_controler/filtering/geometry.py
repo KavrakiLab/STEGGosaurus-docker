@@ -1,8 +1,7 @@
 
+from glob import glob
 import itertools
 import os
-import shutil
-from tqdm import tqdm
 from typing import Dict, List, Tuple
 
 import numpy as np
@@ -218,12 +217,10 @@ def calc_geometric_features(folder_path: str, chains: Tuple[str] = ('A', 'C', 'D
     #         scores_df[col] = None
 
     # Loop over pdbs
-    for pdb_file in tqdm(os.listdir(folder_path)):
-        if not pdb_file.lower().endswith(".pdb"):
-            continue
+    for pdb_path in glob(os.path.join(folder_path, "*.pdb")):
 
-        pdb_path = os.path.join(folder_path, pdb_file)
-        pdb_name = os.path.splitext(pdb_file)[0]
+        pdb_name = os.path.splitext(os.path.basename(pdb_path))[0]
+        print(pdb_name)
 
         # Compute CA-CA distances
         ca_distances = min_ca_distances(pdb_path, chains)
@@ -266,14 +263,11 @@ def calc_geometric_features(folder_path: str, chains: Tuple[str] = ('A', 'C', 'D
 
 
 def filter_pdbs(
-    init_folder_path: str, filtered_folder_path: str, cutoffs: Dict = CUTOFFS,
-    directions: Dict = DIRECTIONS, applied: Dict = APPLIED
+    folder_path: str, cutoffs: Dict = CUTOFFS, directions: Dict = DIRECTIONS,
+    applied: Dict = APPLIED
 ):
 
-    if not os.path.exists(filtered_folder_path):
-        os.mkdir(filtered_folder_path)
-
-    df = pd.read_csv(os.path.join(init_folder_path, "geo.csv"))
+    df = pd.read_csv(os.path.join(folder_path, "geo.csv"))
     feature_cols = list(cutoffs.keys())
 
     # Default directions/applied flags
@@ -292,14 +286,11 @@ def filter_pdbs(
             else:
                 mask &= df[col] >= cutoffs[col]
 
-    filtered = df[mask]
+    eliminated = df[~mask]
 
-    for pdb_name in filtered.pdb_name.values:
-        shutil.copy(
-            os.path.join(init_folder_path, pdb_name + ".pdb"),
-            os.path.join(filtered_folder_path, pdb_name + ".pdb")
-        )
+    for pdb_name in eliminated.pdb_name.values:
+        os.remove(os.path.join(folder_path, pdb_name + ".pdb"))
 
-    print(f"✅ {len(filtered)} / {len(df)} conformations passed geometric filtering")
+    print(f"✅ {len(df) - len(eliminated)} / {len(df)} conformations passed geometric filtering")
 
     return
