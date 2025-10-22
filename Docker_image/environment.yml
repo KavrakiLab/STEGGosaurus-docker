@@ -28,21 +28,18 @@ dependencies:
   - smina
   - tabulate
   - tqdm
+  - cmake
+  - freesasa
+  - ambertools=22
+  - pip
+
   - pip:
-      - absl-py
-      - cmake
+      - --extra-index-url https://download.pytorch.org/whl/cpu
+      - torch
       - deepspeed
+      - absl-py
       - dm-tree
-      - freesasa
       - haddock3
       - ml-collections
-      - mmpbsa-py
       - mol-kit
-      - numpy
-      - pdb2sql
-      - pdb4amber
-      - pytraj
-      - sander
       - termcolor
-      - torch
-      - triton
