@@ -220,7 +220,6 @@ def calc_geometric_features(folder_path: str, chains: Tuple[str] = ('A', 'C', 'D
     for pdb_path in glob(os.path.join(folder_path, "*.pdb")):
 
         pdb_name = os.path.splitext(os.path.basename(pdb_path))[0]
-        print(pdb_name)
 
         # Compute CA-CA distances
         ca_distances = min_ca_distances(pdb_path, chains)
