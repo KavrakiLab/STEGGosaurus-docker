@@ -172,12 +172,12 @@ def model_receptor(allele_sequence, peptide_sequence, allotype, filestore, cv):
 	# model MHC with tfold
 	B2M = '' # TODO: Fix this
 	os.chdir('../../../tfold')
-	with open('MHC'+"".join(random.choices(string.ascii_letters + string.digits, k=10))+'.fasta','w') as f:
+	with open('MHC'+ran_key+'.fasta','w') as f:
 		f.write('>M\n'+allele_sequence+'\n')
 		f.write('>N\n'+B2M+'\n')
 		f.write('>P\n'+peptide_sequence+'\n')
 		# python projects/tfold_tcr/predict.py --json examples/pmhc_example.json --output examples/predictions/ --model_version pMHC
-	os.system('python3 projects/tfold_tcr/predict.py --fasta MHC'+"".join(random.choices(string.ascii_letters + string.digits, k=10))+'.fasta --output output/'+filestore+'MHC.pdb --model_version pMHC')
+	os.system('python3 projects/tfold_tcr/predict.py --fasta MHC'+ran_key+'.fasta --output output/'+filestore+'MHC.pdb --model_version pMHC')
 	os.chdir('../STEGG_controler')
 
 	ppdb = PandasPdb().read_pdb('../tfold/output/'+filestore+'MHC.pdb')
