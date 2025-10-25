@@ -36,13 +36,13 @@ if __name__ == "__main__":
     print('Modeling pMHC ensemble')
     # --- Model pMHC with tfold + Ape-GEN 2.0 ---
     os.chdir('../Ape-Gen2.0-main')
-    os.system('python3 New_APE-Gen.py '+peptide+' '+MHC+' --dir '+TCR_pMHC_pair_id+' --num_cores 50 --num_loops_for_optimization 200 --verbose > ape-gen_output.txt')
+    os.system('python3 New_APE-Gen.py '+peptide+' '+MHC+' --dir '+TCR_pMHC_pair_id+' --num_cores 50 --num_loops_for_optimization 200 --verbose > '+TCR_pMHC_pair_id+'ape-gen_output.txt')
     os.chdir('../STEGG_controler')
 
     shutil.move('../Ape-Gen2.0-main/'+TCR_pMHC_pair_id+'/results/5_final_conformations','pMHC_ensemble_DB/'+TCR_pMHC_pair_id)
 
     # Get the best diverse pMHC conformations based on Ape-GEN scores
-    best_diverse_pmhc = get_ape_gen_diverse('pMHC_ensemble_DB/'+TCR_pMHC_pair_id,'../Ape-Gen2.0-main/ape-gen_output.txt',10)
+    best_diverse_pmhc = get_ape_gen_diverse('pMHC_ensemble_DB/'+TCR_pMHC_pair_id,'../Ape-Gen2.0-main/'+TCR_pMHC_pair_id+'ape-gen_output.txt',10)
 
     if best_diverse_pmhc is not None:
         for file in os.listdir('pMHC_ensemble_DB/'+TCR_pMHC_pair_id):
@@ -63,11 +63,11 @@ if __name__ == "__main__":
     os.makedirs('../T-RECS/output/'+TCR_pMHC_pair_id, exist_ok=True)
     # --- Model TCR ensemble with tfold + T-RECS ---
     os.chdir('../tfold')
-    with open('TCR.fasta','w') as f:
+    with open(TCR_pMHC_pair_id+'TCR.fasta','w') as f:
         f.write('>A\n'+alpha+'\n')
         f.write('>B\n'+beta+'\n')
     # Run tfold to predict TCR structure
-    os.system('python3 projects/tfold_tcr/predict.py --fasta TCR.fasta --output ../T-RECS/output/'+TCR_pMHC_pair_id+'/'+TCR_pMHC_pair_id+'TCR.pdb --model_version TCR')
+    os.system('python3 projects/tfold_tcr/predict.py --fasta '+TCR_pMHC_pair_id+'TCR.fasta --output ../T-RECS/output/'+TCR_pMHC_pair_id+'/'+TCR_pMHC_pair_id+'TCR.pdb --model_version TCR')
     os.chdir('../STEGG_controler')
 
     # # Move tfold output to T-RECS directory and run T-RECS for conformational sampling
