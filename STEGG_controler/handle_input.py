@@ -50,6 +50,7 @@ def get_CDR3_seq(TCR_chain_seq):
     return result.replace('-',''), full_seq.replace('-','')
 
 # TODO: verify peptide input using MHCflurry (already verified compatabililty with docker setup)
+# TODO: verify MHC input using https://github.com/piercelab/tcrmodel2/blob/5ffb3622fcbcbd28d9f92779a6ce720980d51a81/scripts/mhc_hmm/classI.hmm
 
 if __name__ == "__main__":
     main()
