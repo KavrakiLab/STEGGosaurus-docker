@@ -3,3 +3,6 @@ RCD_required_files/korp6Dv1.bin
 
 # Ignore models files
 models/*.pth
+
+# Ignore *.log files
+*.log
