@@ -42,7 +42,7 @@ def run_RCD(n_samples=200,n_keep=1,dd=0.5,t=0.90,target_dir='output/',rcd_file_l
 
     This function changes the current working directory to the target directory,
     runs the RCD executable with specified parameters, and then reverts to the
-    original working directory.
+    original working directory. Output is redirected to system_calls.log.
 
     Args:
         n_samples (int, optional): Number of samples to generate. Defaults to 200.
@@ -56,7 +56,11 @@ def run_RCD(n_samples=200,n_keep=1,dd=0.5,t=0.90,target_dir='output/',rcd_file_l
     home = os.getcwd()
     os.chdir(target_dir)
     rcd_file_location = home+'/'+rcd_file_location
-    os.system(rcd_file_location+'/bin/rcd '+target_file_name+' -n '+str(n_samples)+' -r -t '+str(t)+' -d '+str(dd)+' --linear -x '+rcd_file_location+'/dunbrack.bin --energy_file '+rcd_file_location+'/korp6Dv1.bin --loco_best '+str(n_keep)+' --bench -o rcd_files')
+    
+    # Redirect stdout and stderr to a log file inside the target directory
+    cmd = rcd_file_location+'/bin/rcd '+target_file_name+' -n '+str(n_samples)+' -r -t '+str(t)+' -d '+str(dd)+' --linear -x '+rcd_file_location+'/dunbrack.bin --energy_file '+rcd_file_location+'/korp6Dv1.bin --loco_best '+str(n_keep)+' --bench -o rcd_files >> system_calls.log 2>&1'
+    
+    os.system(cmd)
     os.chdir(home)
 
 def update_loop(loop_pdb,pdb,postfix='_rcd'):
@@ -103,7 +107,7 @@ def pack_sidechains(pdb, chain_id, loop_start, loop_end, output_dir='output/'):
 
     This function generates a sequence file for FASPR, highlighting the loop
     region (uppercase) and other regions (lowercase), then runs FASPR to
-    optimize sidechain conformations.
+    optimize sidechain conformations. Output is redirected to system_calls.log.
 
     Args:
         pdb (str): Path to the input PDB file.
@@ -118,10 +122,15 @@ def pack_sidechains(pdb, chain_id, loop_start, loop_end, output_dir='output/'):
     ppdb = PandasPdb().read_pdb(pdb)
     sequence = ppdb.amino3to1()
     sequence_list = list(sequence['residue_name'])
-    print('seq:',sequence.head())
+    
+    # Commented out prints to reduce parallel noise
+    # print('seq:',sequence.head())
+    
     atom_df = ppdb.df['ATOM']
     atom_df = atom_df.drop_duplicates(subset=['chain_id','residue_number'])
-    print('df_shape:',atom_df.shape)
+    
+    # print('df_shape:',atom_df.shape)
+    
     aa_seq = ''
     for i,row in atom_df.iterrows():
         if row['chain_id'] == chain_id and row['residue_number'] >= loop_start and row['residue_number'] <= loop_end+1:
@@ -131,9 +140,12 @@ def pack_sidechains(pdb, chain_id, loop_start, loop_end, output_dir='output/'):
         
     with open(output_dir+'faspr_seq.txt','w') as out_file:
         out_file.write(aa_seq+'\n')
-    print('seq_len:',len(aa_seq))
         
-    os.system('../FASPR_required_files/FASPR -i '+pdb+' -o '+pdb[:-4]+'_packed.pdb -s '+output_dir+'faspr_seq.txt')
+    # print('seq_len:',len(aa_seq))
+        
+    cmd = '../FASPR_required_files/FASPR -i '+pdb+' -o '+pdb[:-4]+'_packed.pdb -s '+output_dir+'faspr_seq.txt >> '+output_dir+'system_calls.log 2>&1'
+    os.system(cmd)
+    
     return pdb[:-4]+'_packed.pdb'
 
 def generate_loop_conf(working_pdb,fname,chain,output_dir,loop_start,loop_end,n_samples):
