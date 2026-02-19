@@ -167,7 +167,7 @@ def model_receptor(allele_sequence, peptide_sequence, allotype, filestore, cv):
 	starttime = time.time()
 
 	ran_key = "".join(random.choices(string.ascii_letters + string.digits, k=10))
-	print('random key: ' ran_key)
+	print('random key: ', ran_key)
 
 	# model MHC with tfold
 	B2M = '' # TODO: Fix this

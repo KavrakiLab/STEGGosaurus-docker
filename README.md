@@ -2,7 +2,7 @@
 
 # 🦕 STEGGosaurus-Docker
 
-This is a minimal working Docker implementation of **STEGG** for testing purposes. The long-term goal is to make the Docker image available via Docker Hub and host a web server so others can use the tool easily—without ever needing to look at the code (my code is known by the state of California to cause cancer).
+This is a working Docker implementation of **STEGG**. The long-term goal is to make the Docker image available via Docker Hub and host a web server so others can use the tool easily—without ever needing to look at any code.
 
 ---
 
