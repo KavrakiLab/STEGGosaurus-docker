@@ -2,6 +2,9 @@ import json
 import os
 import shutil
 import sys
+import tempfile
+import glob
+import re
 import pandas as pd
 from biopandas.pdb import PandasPdb
 
@@ -60,15 +63,48 @@ if __name__ == "__main__":
     new_df.to_csv('pMHC_ensemble_DB/pMHC_ensemble_DB.csv', mode='a', header=False, index=False)
 
     print('modeling TCR ensemble')
-    os.makedirs('../T-RECS/output/'+TCR_pMHC_pair_id, exist_ok=True)
-    # --- Model TCR ensemble with tfold + T-RECS ---
-    os.chdir('../tfold')
-    with open(TCR_pMHC_pair_id+'TCR.fasta','w') as f:
-        f.write('>A\n'+alpha+'\n')
-        f.write('>B\n'+beta+'\n')
-    # Run tfold to predict TCR structure
-    os.system('python3 projects/tfold_tcr/predict.py --fasta '+TCR_pMHC_pair_id+'TCR.fasta --output ../T-RECS/output/'+TCR_pMHC_pair_id+'/'+TCR_pMHC_pair_id+'TCR.pdb --model_version TCR')
-    os.chdir('../STEGG_controler')
+    t_recs_out_dir = os.path.join('../T-RECS/output', TCR_pMHC_pair_id)
+    os.makedirs(t_recs_out_dir, exist_ok=True)
+    # Create a temporary directory in RAM disk for tfold
+    ramdisk_root = '/dev/shm'
+    with tempfile.TemporaryDirectory(prefix=TCR_pMHC_pair_id + '_tfold_', dir=ramdisk_root) as tfold_tmp_dir:
+        # Prepare input FASTA file in the temporary directory
+        fasta_path = os.path.join(tfold_tmp_dir, TCR_pMHC_pair_id + 'TCR.fasta')
+        with open(fasta_path, 'w') as f:
+            f.write('>A\n' + alpha + '\n')
+            f.write('>B\n' + beta + '\n')
+
+        # tfold output path in the RAM disk (may contain multiple small files)
+        tfold_pdb_ram = os.path.join(tfold_tmp_dir, TCR_pMHC_pair_id + 'TCR.pdb')
+
+        # Run tfold: code directory is still ../tfold, but input/output are directed to the RAM disk
+        os.chdir('../tfold')
+        tfold_cmd = (
+            'python3 projects/tfold_tcr/predict.py '
+            '--fasta ' + fasta_path + ' '
+            '--output ' + tfold_pdb_ram + ' '
+            '--model_version TCR'
+        )
+        ret = os.system(tfold_cmd)
+        os.chdir('../STEGG_controler')
+
+        if ret != 0:
+            raise RuntimeError('tfold predict.py failed with exit code {}'.format(ret))
+
+        # Only copy the final TCR structure from RAM disk to real disk
+        final_pdb_path = os.path.join(t_recs_out_dir, TCR_pMHC_pair_id + 'TCR.pdb')
+        shutil.copy2(tfold_pdb_ram, final_pdb_path)
+
+
+    # os.makedirs('../T-RECS/output/'+TCR_pMHC_pair_id, exist_ok=True)
+    # # --- Model TCR ensemble with tfold + T-RECS ---
+    # os.chdir('../tfold')
+    # with open(TCR_pMHC_pair_id+'TCR.fasta','w') as f:
+    #     f.write('>A\n'+alpha+'\n')
+    #     f.write('>B\n'+beta+'\n')
+    # # Run tfold to predict TCR structure
+    # os.system('python3 projects/tfold_tcr/predict.py --fasta '+TCR_pMHC_pair_id+'TCR.fasta --output ../T-RECS/output/'+TCR_pMHC_pair_id+'/'+TCR_pMHC_pair_id+'TCR.pdb --model_version TCR')
+    # os.chdir('../STEGG_controler')
 
     # # Move tfold output to T-RECS directory and run T-RECS for conformational sampling
     # shutil.move('../tfold/output/TCR.pdb','../T-RECS/TCR.pdb')

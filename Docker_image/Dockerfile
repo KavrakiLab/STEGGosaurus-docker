@@ -86,7 +86,7 @@ RUN --mount=type=bind,source=.,target=/__ctx,readonly \
       /__ctx/RCD_required_files \
       /__ctx/FASPR_required_files \
       /home/ && \
-    chmod -R 755 /home
+    chmod -R 777 /home
 
 ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/mamba/envs/STEGG_all/lib/"
 
