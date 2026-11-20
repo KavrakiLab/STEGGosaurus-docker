@@ -1,155 +1,142 @@
+
+from glob import glob
 import json
 import os
 import shutil
 import sys
-import pandas as pd
-from biopandas.pdb import PandasPdb
+from tqdm import tqdm
 
-from utils import *
-sys.path.insert(1,'/home/STEGG_controler/clustering/')
-from get_best_diverse import *
-sys.path.insert(1,'/home/STEGG_controler/post_processing/')
-from get_ROI import *
-from align_pdbs import *
+from clustering.get_best_diverse import get_ape_gen_diverse
 from filtering.geometry import calc_geometric_features, filter_pdbs
+from post_processing.align_pdbs import *
+from post_processing.get_ROI import *
+from utils import *
+
+
+WORKING_DIR = os.path.abspath(os.getcwd())
+APEGEN_WORKING_DIR = os.path.abspath("../Ape-Gen2.0-main")
+TFOLD_WORKING_DIR = os.path.abspath("../tfold/")
+TRECS_WORKING_DIR = os.path.abspath("../T-RECS/")
+HADDOCK3_WORKING_DIR = os.path.abspath("../haddock3_TCR/")
+
+PMHC_DB_DIR = "pMHC_ensemble_DB"
+TCR_DB_DIR = "TCR_ensemble_DB"
+TCRPMHC_DB_DIR = "STEGG_complex_DB"
+
 
 if __name__ == "__main__":
-    # Command-line arguments:
-    # sys.argv[1]: Path to the input JSON file
-    input_json = sys.argv[1]
 
+    input_json_fp = sys.argv[1]
+    output_dir = sys.argv[2]
 
-    # Read JSON data from file
-    with open(input_json, 'r') as f:
-        data = json.load(f)
+    os.makedirs(output_dir, exist_ok=True)
 
-    # Assign sequences to variables
-    peptide = data["peptide"]
-    MHC = data["MHC"]
-    alpha = data["alpha"]
-    beta = data["beta"]
-    CDR3a = data["CDR3a"]
-    CDR3b = data["CDR3b"]
+    with open(input_json_fp, "r") as f:
+        input_data = json.load(f)
 
-    TCR_pMHC_pair_id = data["jobID"]
+    job_id = input_data["jobID"]
+    peptide_seq = input_data["peptide"]
+    mhc_seq = input_data["MHC"]
+    tcr_alpha_seq = input_data["alpha"]
+    tcr_beta_seq = input_data["beta"]
+    cdr3a_seq = input_data["CDR3a"]
+    cdr3b_seq = input_data["CDR3b"]
 
-    print('Modeling pMHC ensemble')
-    # --- Model pMHC with tfold + Ape-GEN 2.0 ---
-    os.chdir('../Ape-Gen2.0-main')
-    os.system('python3 New_APE-Gen.py '+peptide+' '+MHC+' --dir '+TCR_pMHC_pair_id+' --num_cores 50 --num_loops_for_optimization 200 --verbose > '+TCR_pMHC_pair_id+'ape-gen_output.txt')
-    os.chdir('../STEGG_controler')
+    pmhc_db_dir = os.path.join(output_dir, PMHC_DB_DIR, job_id)
+    tcr_db_dir = os.path.join(output_dir, TCR_DB_DIR, job_id)
+    tcrpmhc_db_dir = os.path.join(output_dir, TCRPMHC_DB_DIR, job_id)
 
-    shutil.move('../Ape-Gen2.0-main/'+TCR_pMHC_pair_id+'/results/5_final_conformations','pMHC_ensemble_DB/'+TCR_pMHC_pair_id)
+    # --- Model pMHC with tFold + Ape-GEN 2.0 ---
 
-    # Get the best diverse pMHC conformations based on Ape-GEN scores
-    best_diverse_pmhc = get_ape_gen_diverse('pMHC_ensemble_DB/'+TCR_pMHC_pair_id,'../Ape-Gen2.0-main/'+TCR_pMHC_pair_id+'ape-gen_output.txt',10)
+    print("Modeling pMHC ensemble")
 
+    apegen_output_file = os.path.join(APEGEN_WORKING_DIR, f"{job_id}_output.txt")
+    apegen_output_dir = os.path.join(APEGEN_WORKING_DIR, "output/", job_id)
+
+    os.chdir(APEGEN_WORKING_DIR)
+    os.system(f"python3 New_APE-Gen.py {peptide_seq} {mhc_seq} --dir {os.path.relpath(apegen_output_dir)} --num_cores 50 --num_loops_for_optimization 200 --verbose > {apegen_output_file}")
+    os.chdir(WORKING_DIR)
+
+    os.makedirs(pmhc_db_dir)
+    for pdb_fp in tqdm(glob(os.path.join(apegen_output_dir, "results/5_final_conformations/*.pdb"))):
+        shutil.move(pdb_fp, pmhc_db_dir)
+
+    shutil.rmtree(apegen_output_dir)
+
+    best_diverse_pmhc = get_ape_gen_diverse(pmhc_db_dir, apegen_output_file, 10)
+    print(best_diverse_pmhc)
     if best_diverse_pmhc is not None:
-        for file in os.listdir('pMHC_ensemble_DB/'+TCR_pMHC_pair_id):
-            if file[-4:] == '.pdb':
-                if file not in list(best_diverse_pmhc['Peptide_Index']):
-                    os.remove('pMHC_ensemble_DB/'+TCR_pMHC_pair_id+'/'+file)
+        for pdb_fp in tqdm(glob(os.path.join(pmhc_db_dir, "*.pdb"))):
+            if os.path.basename(pdb_fp) not in list(best_diverse_pmhc["Peptide_Index"]):
+                os.remove(pdb_fp)
 
-    # TODO: repeat modeling if too few conformations
+    os.remove(apegen_output_file)
 
-    # Save metadata for the new pMHC ensemble
-    meta = {'hash':TCR_pMHC_pair_id,'peptide':peptide,'MHC':MHC}
-    with open('pMHC_ensemble_DB/'+TCR_pMHC_pair_id+'/meta.json','w') as f:
-        json.dump(meta, f)
-    new_df = pd.DataFrame([meta])
-    new_df.to_csv('pMHC_ensemble_DB/pMHC_ensemble_DB.csv', mode='a', header=False, index=False)
+    metadata = dict(hash=job_id, peptide=peptide_seq, MHC=mhc_seq)
+    with open(os.path.join(pmhc_db_dir, "meta.json"), "w") as f:
+        json.dump(metadata, f)
+    new_df = pd.DataFrame([metadata])
+    new_df.to_csv(os.path.join(output_dir, PMHC_DB_DIR, "pMHC_ensemble_DB.csv"), mode="a", header=False, index=False)
 
-    print('modeling TCR ensemble')
-    os.makedirs('../T-RECS/output/'+TCR_pMHC_pair_id, exist_ok=True)
-    # --- Model TCR ensemble with tfold + T-RECS ---
-    os.chdir('../tfold')
-    with open(TCR_pMHC_pair_id+'TCR.fasta','w') as f:
-        f.write('>A\n'+alpha+'\n')
-        f.write('>B\n'+beta+'\n')
-    # Run tfold to predict TCR structure
-    os.system('python3 projects/tfold_tcr/predict.py --fasta '+TCR_pMHC_pair_id+'TCR.fasta --output ../T-RECS/output/'+TCR_pMHC_pair_id+'/'+TCR_pMHC_pair_id+'TCR.pdb --model_version TCR')
-    os.chdir('../STEGG_controler')
+    # --- Model TCR with tFold + T-RECS ---
 
-    # # Move tfold output to T-RECS directory and run T-RECS for conformational sampling
-    # shutil.move('../tfold/output/TCR.pdb','../T-RECS/TCR.pdb')
-    os.chdir('../T-RECS')
-    os.system('python3 T-RECS.py output/'+TCR_pMHC_pair_id+'/'+TCR_pMHC_pair_id+'TCR.pdb 25')# start with 40 TCR conformations if filtering
-    os.chdir('../STEGG_controler')
+    print("Modeling TCR ensemble")
 
-    shutil.move('../T-RECS/output/output/'+TCR_pMHC_pair_id+'/'+TCR_pMHC_pair_id+'TCR','TCR_ensemble_DB/'+TCR_pMHC_pair_id)
-    # os.remove('../T-RECS/TCR.pdb')
+    tcr_fasta_fp = os.path.join(TFOLD_WORKING_DIR, f"{job_id}_TCR.fasta")
+    with open(tcr_fasta_fp, "w") as f:
+        f.write(f">A\n{tcr_alpha_seq}\n")
+        f.write(f">B\n{tcr_beta_seq}\n")
 
-    # # clustering and filtering of TCR conformations,
-    # best_diverse_tcr = get_t_recs_diverse('TCR_ensemble_DB/'+TCR_pMHC_pair_id,25)
-    #
-    # for file in os.listdir('TCR_ensemble_DB/'+TCR_pMHC_pair_id):
-    #     if file not in list(best_diverse_tcr['tcr_pdb_name']):
-    #         os.remove('TCR_ensemble_DB/'+TCR_pMHC_pair_id+'/'+file)
+    trecs_input_dir = os.path.join(TRECS_WORKING_DIR, "input/")
+    os.makedirs(trecs_input_dir, exist_ok=True)
+    trecs_input_fp = os.path.join(trecs_input_dir, f"{job_id}.pdb")
 
-    # TODO: re-modeling if needed.
+    os.chdir(TFOLD_WORKING_DIR)
+    os.system(f"python3 projects/tfold_tcr/predict.py --fasta {tcr_fasta_fp} --output {trecs_input_fp} --model_version TCR")
+    os.chdir(WORKING_DIR)
 
-    # Save metadata for the new TCR ensemble
-    meta = {'hash':TCR_pMHC_pair_id,'alpha':alpha,'beta':beta}
-    with open('TCR_ensemble_DB/'+TCR_pMHC_pair_id+'/meta.json','w') as f:
-        json.dump(meta, f)
-    new_df = pd.DataFrame([meta])
-    new_df.to_csv('TCR_ensemble_DB/TCR_ensemble_DB.csv', mode='a', header=False, index=False)
+    os.chdir(TRECS_WORKING_DIR)
+    os.system(f"python3 T-RECS.py {trecs_input_fp} 25")
+    os.chdir(WORKING_DIR)
 
-    print('running ensemble docking')
-    # --- Dock TCRs and pHLAs using HADDOCK3 ---
-    os.chdir('../haddock3_TCR')
-    cmd = 'python3 dock_TCR_pHLA.py ../STEGG_controler/TCR_ensemble_DB/'+TCR_pMHC_pair_id+' ../STEGG_controler/pMHC_ensemble_DB/'+TCR_pMHC_pair_id+' '+CDR3a+' '+CDR3b+' '+peptide
-    print(cmd)
-    os.system(cmd)
-    os.chdir('../STEGG_controler')
+    os.makedirs(tcr_db_dir)
+    trecs_output_dir = os.path.join(TRECS_WORKING_DIR, "output/", job_id)
+    for pdb_fp in glob(os.path.join(trecs_output_dir, "*.pdb")):
+        shutil.move(pdb_fp, tcr_db_dir)
 
-    # --- Post-processing of docked complexes ---
-    unzip_gz_files('../haddock3_TCR/output/'+TCR_pMHC_pair_id+'_'+TCR_pMHC_pair_id+'/run/9_emref', 'STEGG_complex_DB/'+TCR_pMHC_pair_id)
-    for new_file in os.listdir('STEGG_complex_DB/'+TCR_pMHC_pair_id):
-        decouple_chains('STEGG_complex_DB/'+TCR_pMHC_pair_id+'/'+new_file,'STEGG_complex_DB/'+TCR_pMHC_pair_id,new_file[:-4]+'_roi')
-        os.remove('STEGG_complex_DB/'+TCR_pMHC_pair_id+'/'+new_file)
-    for trash_file in os.listdir('STEGG_complex_DB'):
-        if 'anarci' in trash_file:
-            os.remove('STEGG_complex_DB/'+trash_file)
-    for trash_file in os.listdir('STEGG_complex_DB/'+TCR_pMHC_pair_id):
-        if 'anarci' in trash_file:
-            os.remove('STEGG_complex_DB/'+TCR_pMHC_pair_id+'/'+trash_file)
+    os.remove(trecs_input_fp)
+    shutil.rmtree(trecs_output_dir)
 
-    #TODO energy min... ?
+    metadata = dict(hash=job_id, alpha=tcr_alpha_seq, beta=tcr_beta_seq)
+    with open(os.path.join(tcr_db_dir, "meta.json"), "w") as f:
+        json.dump(metadata, f)
+    new_df = pd.DataFrame([metadata])
+    new_df.to_csv(os.path.join(output_dir, TCR_DB_DIR, "TCR_ensemble_DB.csv"), mode="a", header=False, index=False)
 
-    # Align all structures based on a reference chain (MHC chain)
-    align_all_pdbs('STEGG_complex_DB/'+TCR_pMHC_pair_id)
+    # --- Model complexes with HADDOCK3 --- #
 
-    # Filter results based on geometric criteria (TODO: make optional / expose criteria as parameters?)
-    # calc_geometric_features(os.path.join("STEGG_complex_DB/", TCR_pMHC_pair_id))
-    # filter_pdbs(os.path.join("STEGG_complex_DB/", TCR_pMHC_pair_id))
+    print("Running ensemble docking")
 
-    # Save metadata for the new STEGG complex ensemble
-    meta = {'hash':TCR_pMHC_pair_id,'alpha':alpha,'beta':beta,'peptide':peptide,'MHC':MHC}
-    with open('STEGG_complex_DB/'+TCR_pMHC_pair_id+'/meta.json','w') as f:
-        json.dump(meta, f)
-    new_df = pd.DataFrame([meta])
-    new_df.to_csv('STEGG_complex_DB/STEGG_complex_DB.csv', mode='a', header=False, index=False)
+    os.chdir(HADDOCK3_WORKING_DIR)
+    os.system(f"python3 dock_TCR_pHLA.py {tcr_db_dir} {pmhc_db_dir} {tcr_alpha_seq} {tcr_beta_seq} {peptide_seq}")
+    os.chdir(WORKING_DIR)
 
-    # print("cleaning files")
-    # #TODO: clean excess files
+    haddock3_output_dir = os.path.join(HADDOCK3_WORKING_DIR, "output/", f"{job_id}_{job_id}")
+    os.makedirs(tcrpmhc_db_dir)
+    unzip_gz_files(os.path.join(haddock3_output_dir, "run/9_emref/"), tcrpmhc_db_dir)
+    shutil.rmtree(haddock3_output_dir)
 
-    print("\nComplex modeling and docking complete!")
+    for pdb_fp in glob(os.path.join(tcrpmhc_db_dir, "*.pdb")):
+        decouple_chains(pdb_fp, tcrpmhc_db_dir, f"{os.path.basename(pdb_fp)[:-4]}_roi")
+        os.remove(pdb_fp)
 
-    print('cleaning files')
-    files_to_clean = [
-        '../haddock3_TCR/'+TCR_pMHC_pair_id+'_'+TCR_pMHC_pair_id+'.cfg',
-    ]
-    directories_to_clean = [
-        '../Ape-Gen2.0-main/'+TCR_pMHC_pair_id,
-        '../T-RECS/output/'+TCR_pMHC_pair_id,
-        '../T-RECS/output/output/'+TCR_pMHC_pair_id,
-        '../haddock3_TCR/output/'+TCR_pMHC_pair_id+'_'+TCR_pMHC_pair_id,
-        '../tfold/output/'+TCR_pMHC_pair_id,
-    ]
+    for fp in glob(os.path.join(tcrpmhc_db_dir, "*anarci*")):
+        os.remove(fp)
 
-    for file in files_to_clean:
-        os.remove(file)
+    align_all_pdbs(tcrpmhc_db_dir)
 
-    for directory in directories_to_clean:
-        shutil.rmtree(directory)
+    metadata = dict(hash=job_id, alpha=tcr_alpha_seq, beta=tcr_beta_seq, peptide=peptide_seq, MHC=mhc_seq)
+    with open(os.path.join(tcrpmhc_db_dir, "meta.json"), "w") as f:
+        json.dump(metadata, f)
+    new_df = pd.DataFrame([metadata])
+    new_df.to_csv(os.path.join(output_dir, TCRPMHC_DB_DIR, "STEGG_complex_DB.csv"), mode="a", header=False, index=False)
